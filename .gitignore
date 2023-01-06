@@ -73,3 +73,5 @@ crashlytics-build.properties
 *.csproj
 *.asset
 *.asset
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+*.csproj
