@@ -54,6 +54,8 @@ public class GunModule : Module
         Rigidbody bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
 
+        Camera.main.GetComponent<CameraShake>().startShaking(0.1f, 0.03f, 150f);
+
         if (hit.transform)
         bullet.GetComponent<Bullet>().hitPoint = hit.point;
 

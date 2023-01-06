@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GunModule.cs" />
     <Compile Include="Assets\Scripts\HealthEntity.cs" />
     <Compile Include="Assets\Scripts\Abilities\SpeedUpAbility.cs" />
+    <Compile Include="Assets\Scripts\CameraShake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

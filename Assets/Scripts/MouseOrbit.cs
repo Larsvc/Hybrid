@@ -49,6 +49,9 @@ public class MouseOrbit : MonoBehaviour
 
     void RotateGunModules()
     {
+        if (modules.Length == 0)
+            modules = target.Find("Modules").GetComponentsInChildren<GunModule>();
+
         foreach (GunModule g in modules)
         {
             Transform m = g.transform;
