@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class HealthEntity : MonoBehaviour
 {
-    [SerializeField]private float health = 1000;
+    [SerializeField] protected float health = 1000;
     [SerializeField] protected Animator hitmarker;
     protected Animator animator;
 

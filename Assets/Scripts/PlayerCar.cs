@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerCar : HealthEntity
 {
-    [SerializeField]private float health = 1000;
 
     [SerializeField] private float rotateSpeed = 5f;
     [SerializeField] private float moveSpeed = 10f;
