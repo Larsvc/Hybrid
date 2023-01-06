@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbilityModule : HealthEntity
+public abstract class AbilityModule : Module
 {
-    private bool canActivate = true;
-    [SerializeField] private float cooldown = 10f;
+    protected bool canActivate = true;
+    [SerializeField] abstract protected float Cooldown
+    {
+        get;
+    }
 
     // Start is called before the first frame update
     protected override void Start()
@@ -38,18 +41,7 @@ public abstract class AbilityModule : HealthEntity
 
     IEnumerator WaitForCooldown()
     {
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(Cooldown);
         canActivate = true;
-    }
-
-    protected override void Die()
-    {
-        transform.SetParent(null);
-        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-        rb.mass = 0.01f;
-        rb.AddTorque(UnityEngine.Random.insideUnitSphere * 1.5f);
-        rb.AddForce(Vector3.up * 3, ForceMode.Force);
-        Destroy(this);
-        Destroy(gameObject, 4f);
     }
 }

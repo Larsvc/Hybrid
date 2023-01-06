@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerCar : HealthEntity
 {
     [SerializeField] private float rotateSpeed = 5f;
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] public float moveSpeed = 10f;
     [SerializeField] private float bulletForce = 30f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private AudioClip hitSound;
@@ -29,6 +29,7 @@ public class PlayerCar : HealthEntity
     private ParticleSystem shootEffect;
 
     private GunModule[] gunModules;
+    private AbilityModule[] abilityModules;
 
     private TextMeshPro healthText;
 
@@ -47,6 +48,7 @@ public class PlayerCar : HealthEntity
         healthText = GetComponentInChildren<TextMeshPro>();
 
         gunModules = transform.Find("Modules").GetComponentsInChildren<GunModule>();
+        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>();
     }
 
     // Update is called once per frame
@@ -59,7 +61,10 @@ public class PlayerCar : HealthEntity
         HandleMovement();
 
         if (Input.GetAxisRaw("Fire1") != 0 && canShoot)
-           SetShootTrigger();
+            SetShootTrigger();
+
+        if (Input.GetAxisRaw("Fire3") != 0)
+            ActivateAbilities();
     }
 
     private void FixedUpdate()
@@ -85,6 +90,14 @@ public class PlayerCar : HealthEntity
         foreach(GunModule gun in gunModules)
         {
             gun.Fire();
+        }
+    }
+
+    private void ActivateAbilities()
+    {
+        foreach (AbilityModule ability in abilityModules)
+        {
+            ability.Activate();
         }
     }
 
