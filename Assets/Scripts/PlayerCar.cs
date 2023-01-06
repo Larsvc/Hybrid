@@ -9,11 +9,7 @@ public class PlayerCar : HealthEntity
 {
     [SerializeField] private float rotateSpeed = 5f;
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float bulletForce = 30f;
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private AudioClip hitSound;
-
-    private float fireRate = 9f;
 
     private Rigidbody rb;
     private AudioSource audioSource;
@@ -24,13 +20,14 @@ public class PlayerCar : HealthEntity
     private float normalVolume;
     private bool canShoot = true;
 
-    private Transform barrel;
+    private TextMeshPro healthText;
 
-    private ParticleSystem shootEffect;
+    #region Modules
+    [SerializeField] private Transform[] moduleSlots;
+    private string[] selectedModules;
 
     private GunModule[] gunModules;
-
-    private TextMeshPro healthText;
+    #endregion
 
     // Start is called before the first frame update
     protected override void Start()
@@ -41,12 +38,33 @@ public class PlayerCar : HealthEntity
         audioSource = GetComponent<AudioSource>();
         normalVolume = audioSource.volume;
 
-        barrel = transform.GetChild(1).GetChild(0);
-
-        shootEffect = GetComponentInChildren<ParticleSystem>();
         healthText = GetComponentInChildren<TextMeshPro>();
 
+        LoadModules();
         gunModules = transform.Find("Modules").GetComponentsInChildren<GunModule>();
+    }
+
+    private void LoadModules()
+    {
+        //TODO: selectedModules = read from chips
+        selectedModules = ReadModulesFromChips();
+
+        for (int i = 0; i < moduleSlots.Length; i++)
+        {
+            string moduleInput = selectedModules[i];
+            GameObject modulePrefab = Resources.Load<GameObject>("Modules/" + moduleInput);
+
+            if (modulePrefab != null)
+            {
+                GameObject module = Instantiate(modulePrefab, moduleSlots[i].position, Quaternion.identity, moduleSlots[i]);
+                module.transform.forward = transform.forward;
+            }
+        }
+    }
+
+    private string[] ReadModulesFromChips() //TODO: read from chips
+    {
+        return new string[] { "Gun", "Gun" };
     }
 
     // Update is called once per frame
