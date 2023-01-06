@@ -29,8 +29,7 @@ public class PlayerCar : HealthEntity
 
     private GunModule[] gunModules;
     private AbilityModule[] abilityModules;
-
-    private TextMeshPro healthText;
+    #endregion
 
     // Start is called before the first frame update
     protected override void Start()
