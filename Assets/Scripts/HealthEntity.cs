@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class HealthEntity : MonoBehaviour
 {
-    [SerializeField]private float health = 1000;
+    [SerializeField] protected float health = 1000;
     [SerializeField] protected Animator hitmarker;
     protected Animator animator;
 
@@ -32,6 +32,8 @@ public abstract class HealthEntity : MonoBehaviour
         hitmarker.SetTrigger("hit");
         health -= damage;
         animator.SetTrigger("hit");
+        hitmarker.GetComponent<AudioSource>().Play();
+        hitmarker.GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.3f);
     }
 
     protected abstract void Die();

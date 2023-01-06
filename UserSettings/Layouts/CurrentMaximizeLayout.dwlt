@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f46b0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 34fbffff
+      m_SelectedIDs: ee680000
+      m_LastClickedID: 26862
+      m_ExpandedIDs: 34fbffffb86700002a680000ae680000dc68000078690000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -506,9 +506,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.758349, y: 2.2574642, z: 15.057302}
+    m_Target: {x: 6.411081, y: 3.584716, z: 11.930205}
     speed: 2
-    m_Value: {x: -2.758349, y: 2.2574642, z: 15.057302}
+    m_Value: {x: 6.411081, y: 3.584716, z: 11.930205}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -555,13 +555,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.045359667, y: -0.95464957, z: 0.20528331, w: 0.21095195}
+    m_Target: {x: 0.048291903, y: -0.69977945, z: 0.047531646, w: 0.71118057}
     speed: 2
-    m_Value: {x: 0.045358412, y: -0.95462316, z: 0.20527764, w: 0.21094611}
+    m_Value: {x: 0.048290446, y: -0.69975835, z: 0.04753021, w: 0.7111591}
   m_Size:
-    m_Target: 2.3159907
+    m_Target: 0.92215556
     speed: 2
-    m_Value: 2.3159907
+    m_Value: 0.92215556
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -653,10 +653,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 19df57a7519ae184a9426e3db44815af,
+  m_AnimatorController: {fileID: 9100000, guid: c09bb6089742f514b8eaa803d650f92f,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -9017922295918149387, guid: 19df57a7519ae184a9426e3db44815af,
+  - m_Target: {fileID: 6812781852338543626, guid: c09bb6089742f514b8eaa803d650f92f,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -740,21 +740,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Program Files (x86)\Unity Projects\GitProjects\Hybrid
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d66b0000
-    m_LastClickedID: 27606
+    m_SelectedIDs: e26b0000
+    m_LastClickedID: 27618
     m_ExpandedIDs: 00000000d66b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -783,7 +783,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d66b0000
+    m_ExpandedIDs: 00000000d66b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -808,8 +808,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f46b0000
-    m_LastClickedInstanceID: 27636
+    m_SelectedInstanceIDs: ee680000
+    m_LastClickedInstanceID: 26862
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -899,7 +899,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 26732
+  m_LastSelectedObjectID: 26862
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -919,8 +919,8 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}

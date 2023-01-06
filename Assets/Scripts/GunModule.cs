@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunModule : HealthEntity
+public class GunModule : Module
 {
     private bool canShoot = true;
     [SerializeField] private float bulletForce = 30f;
@@ -22,11 +22,11 @@ public class GunModule : HealthEntity
     protected override void Update()
     {
         base.Update();
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        /*Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Vector3 aimPoint = ray.GetPoint(40f);
         Vector3 dir = (aimPoint - transform.position).normalized;
 
-        Debug.DrawRay(transform.position, dir * 100f, Color.red);
+        Debug.DrawRay(transform.position, dir * 100f, Color.red);*/
     }
 
     public void Fire()
@@ -44,11 +44,9 @@ public class GunModule : HealthEntity
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit, 100f))
         {
-            Debug.Log("Ik hit " + hit.collider.transform.name);
             if (FirstParent(hit.collider.transform))
             {
                 FirstParent(hit.collider.transform).TakeHit(damage);
-                Debug.Log("Dikke damage");
             }
         }
 
@@ -80,16 +78,5 @@ public class GunModule : HealthEntity
     {
         yield return new WaitForSeconds(1 / fireRate);
         canShoot = true;
-    }
-
-    protected override void Die()
-    {
-        transform.SetParent(null);
-        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-        rb.mass = 0.01f;
-        rb.AddTorque(UnityEngine.Random.insideUnitSphere * 1.5f);
-        rb.AddForce(Vector3.up * 3, ForceMode.Force);
-        Destroy(this);
-        Destroy(gameObject, 4f);
     }
 }

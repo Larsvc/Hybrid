@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class PlayerCar : HealthEntity
 {
-    [SerializeField]private float health = 1000;
-
     [SerializeField] private float rotateSpeed = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float bulletForce = 30f;
@@ -90,33 +88,9 @@ public class PlayerCar : HealthEntity
         }
     }
 
-   /* private void Shoot()
-    {
-        foreach (Transform gun in gunModules)
-        {
-            Rigidbody bullet = Instantiate(bulletPrefab, gun.position + gun.forward, Quaternion.identity).GetComponent<Rigidbody>();
-            bullet.AddForce(gun.forward * bulletForce * bullet.mass, ForceMode.Impulse);
-            gun.GetComponentInChildren<ParticleSystem>().Play();
-        }
-        animator.SetTrigger("shoot");
-        //shootEffect.Play();
-
-        canShoot = false;
-
-        StartCoroutine(WaitForFireRate());
-    }
-
-    IEnumerator WaitForFireRate()
-    {
-        yield return new WaitForSeconds(1 / fireRate);
-        canShoot = true;
-    }*/
-
     public override void TakeHit(float damage)
     {
-        hitmarker.SetTrigger("hit");
-        health -= damage;
-        animator.SetTrigger("hit");
+        base.TakeHit(damage);
         audioSource.PlayOneShot(hitSound);
     }
 
