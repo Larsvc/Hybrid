@@ -8,7 +8,8 @@ using UnityEngine;
 public class PlayerCar : HealthEntity
 {
     [SerializeField] private float rotateSpeed = 5f;
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] public float moveSpeed = 10f;
+    
     [SerializeField] private AudioClip hitSound;
 
     private Rigidbody rb;
@@ -27,7 +28,9 @@ public class PlayerCar : HealthEntity
     private string[] selectedModules;
 
     private GunModule[] gunModules;
-    #endregion
+    private AbilityModule[] abilityModules;
+
+    private TextMeshPro healthText;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -42,6 +45,7 @@ public class PlayerCar : HealthEntity
 
         LoadModules();
         gunModules = transform.Find("Modules").GetComponentsInChildren<GunModule>();
+        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>();
     }
 
     private void LoadModules()
@@ -77,7 +81,10 @@ public class PlayerCar : HealthEntity
         HandleMovement();
 
         if (Input.GetAxisRaw("Fire1") != 0 && canShoot)
-           SetShootTrigger();
+            SetShootTrigger();
+
+        if (Input.GetAxisRaw("Fire3") != 0)
+            ActivateAbilities();
     }
 
     private void FixedUpdate()
@@ -103,6 +110,14 @@ public class PlayerCar : HealthEntity
         foreach(GunModule gun in gunModules)
         {
             gun.Fire();
+        }
+    }
+
+    private void ActivateAbilities()
+    {
+        foreach (AbilityModule ability in abilityModules)
+        {
+            ability.Activate();
         }
     }
 
