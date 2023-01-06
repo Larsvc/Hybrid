@@ -32,6 +32,8 @@ public abstract class HealthEntity : MonoBehaviour
         hitmarker.SetTrigger("hit");
         health -= damage;
         animator.SetTrigger("hit");
+        hitmarker.GetComponent<AudioSource>().Play();
+        hitmarker.GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.3f);
     }
 
     protected abstract void Die();
