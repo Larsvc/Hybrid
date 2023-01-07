@@ -57,17 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Abilities\AbilityModule.cs" />
+    <Compile Include="Assets\Scripts\Abilities\SpeedUpAbility.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\Module.cs" />
     <Compile Include="Assets\Scripts\ChromaticAberration.cs" />
+    <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\MouseOrbit.cs" />
     <Compile Include="Assets\Scripts\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\PlayerCar.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\GunModule.cs" />
     <Compile Include="Assets\Scripts\HealthEntity.cs" />
-    <Compile Include="Assets\Scripts\Abilities\SpeedUpAbility.cs" />
-    <Compile Include="Assets\Scripts\CameraShake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
