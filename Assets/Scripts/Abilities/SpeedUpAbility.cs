@@ -6,8 +6,8 @@ public class SpeedUpAbility : AbilityModule
 {
     GameObject player;
     float basePlayerSpeed;
-    public float speedUpModifier;
-    public float spedUpTime;
+    public float speedUpModifier = 2;
+    public float spedUpTime = 4;
 
     protected override float Cooldown
     {
