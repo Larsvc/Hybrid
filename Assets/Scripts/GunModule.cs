@@ -44,9 +44,11 @@ public class GunModule : Module
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit, 100f))
         {
+            GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
             if (FirstParent(hit.collider.transform))
             {
                 FirstParent(hit.collider.transform).TakeHit(damage);
+                Destroy(hitEffect, 1f);
             }
         }
 
