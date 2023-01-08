@@ -15,8 +15,15 @@ public class PlayerCar : HealthEntity
     private Rigidbody rb;
     private AudioSource audioSource;
 
+    public Camera cam;
+
     private float hor;
     private float vert;
+
+    public string horizontalControls = "MoveHorizontalP1";
+    public string verticalControls = "MoveVerticalP1";
+    public string shoot = "FireP1";
+    public string ability = "AbilityP1";
 
     private float normalVolume;
     private bool canShoot = true;
@@ -67,7 +74,7 @@ public class PlayerCar : HealthEntity
 
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
-        return new string[] { "Gun", "SpeedUp" };
+        return new string[] { "Gun", "Shield" };
     }
 
     // Update is called once per frame
@@ -79,10 +86,10 @@ public class PlayerCar : HealthEntity
 
         HandleMovement();
 
-        if (Input.GetAxisRaw("Fire1") != 0 && canShoot)
+        if (Input.GetAxisRaw(shoot) != 0 && canShoot)
             SetShootTrigger();
 
-        if (Input.GetAxisRaw("Fire3") != 0)
+        if (Input.GetAxisRaw(ability) != 0)
             ActivateAbilities();
     }
 
@@ -95,8 +102,8 @@ public class PlayerCar : HealthEntity
 
     private void HandleMovement()
     {
-        hor = Input.GetAxisRaw("Horizontal");
-        vert = Input.GetAxisRaw("Vertical");
+        hor = Input.GetAxisRaw(horizontalControls);
+        vert = Input.GetAxisRaw(verticalControls);
 
         audioSource.volume = Mathf.Lerp(0, normalVolume, rb.velocity.magnitude / 5f);
         audioSource.pitch = Mathf.Lerp(0.6f, 1f, rb.velocity.magnitude / 5f);
@@ -108,7 +115,7 @@ public class PlayerCar : HealthEntity
     {
         foreach(GunModule gun in gunModules)
         {
-            gun.Fire();
+            gun.Fire(cam);
         }
     }
 

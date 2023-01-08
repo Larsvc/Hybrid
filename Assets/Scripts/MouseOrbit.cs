@@ -13,6 +13,11 @@ public class MouseOrbit : MonoBehaviour
     public float xSpeed = 120.0f;
     public float ySpeed = 120.0f;
 
+    public string lookHorizontal = "Mouse X";
+    public string lookVertical = "Mouse Y";
+
+    public float lookModifier = 0.1f;
+
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
 
@@ -65,8 +70,8 @@ public class MouseOrbit : MonoBehaviour
 
         if (target)
         {
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+            x += Input.GetAxis(lookHorizontal) * xSpeed * distance * lookModifier;
+            y -= Input.GetAxis(lookVertical) * ySpeed * lookModifier;
             /*else if (isMoving || Input.GetMouseButton(1))
               {
                   x = target.eulerAngles.y;

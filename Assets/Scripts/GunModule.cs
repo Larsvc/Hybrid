@@ -29,15 +29,14 @@ public class GunModule : Module
         Debug.DrawRay(transform.position, dir * 100f, Color.red);*/
     }
 
-    public void Fire()
+    public void Fire(Camera cam)
     {
         if (!canShoot)
             return;
 
        transform.GetComponentInChildren<ParticleSystem>().Play();
 
-
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Vector3 aimPoint = ray.GetPoint(40f);
         Vector3 dir = (aimPoint - transform.position).normalized;
 
