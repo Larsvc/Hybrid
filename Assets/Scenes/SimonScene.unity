@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 57876036}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 84519435}
   - component: {fileID: 84519434}
   - component: {fileID: 84519433}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405060459}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -5945,7 +5945,7 @@ GameObject:
   - component: {fileID: 557842583}
   - component: {fileID: 557842582}
   - component: {fileID: 557842581}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11435,7 +11435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814121936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Modules
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11468,7 +11468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 825377011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Modules
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12752,7 +12752,7 @@ GameObject:
   - component: {fileID: 1645103055}
   - component: {fileID: 1645103054}
   - component: {fileID: 1645103053}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player2 (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -13006,7 +13006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1669832107}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13040,7 +13040,7 @@ GameObject:
   - component: {fileID: 1729884914}
   - component: {fileID: 1729884913}
   - component: {fileID: 1729884912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13162,7 +13162,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -0.0012283325}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -13569,7 +13569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1931973670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -13600,7 +13600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1995600184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -13631,7 +13631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2011589084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}

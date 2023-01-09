@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8663930305719886188}
   - component: {fileID: 8663930305719886190}
   - component: {fileID: 8663930305719886189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4834,7 +4834,7 @@ GameObject:
   - component: {fileID: 8663930305876397444}
   - component: {fileID: 8663930305876397447}
   - component: {fileID: 8780046728065166302}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpeedUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

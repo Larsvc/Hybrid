@@ -8,6 +8,7 @@ public abstract class Module : HealthEntity
     protected override void Start()
     {
         base.Start();
+        hitmarker = GameObject.Find("Hitmarker").GetComponent<Animator>();
     }
 
     // Update is called once per frame

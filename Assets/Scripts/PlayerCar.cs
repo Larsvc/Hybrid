@@ -68,6 +68,7 @@ public class PlayerCar : HealthEntity
             {
                 GameObject module = Instantiate(modulePrefab, moduleSlots[i].position, Quaternion.identity, moduleSlots[i]);
                 module.transform.forward = transform.forward;
+                module.layer = gameObject.layer;
             }
         }
     }

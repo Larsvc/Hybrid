@@ -87,7 +87,10 @@ public class MouseOrbit : MonoBehaviour
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
 
             RaycastHit hit;
-            if (Physics.Linecast(target.position, transform.position, out hit))
+            int mask = 1 << 6; //TODO: idk if work
+            mask = mask << 7;
+            mask = ~mask;
+            if (Physics.Linecast(target.position, transform.position, out hit, mask))
             {
                 distance -= hit.distance;
             }

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8663930305130068533}
   - component: {fileID: 8663930305130068535}
   - component: {fileID: 8663930305130068534}
-  m_Layer: 0
+  - component: {fileID: 1092155605206529813}
+  m_Layer: 6
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1092155605206529813
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663930305130068532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8663930305719886163
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +108,7 @@ GameObject:
   - component: {fileID: 8663930305719886188}
   - component: {fileID: 8663930305719886190}
   - component: {fileID: 8663930305719886189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4917,7 +4931,8 @@ GameObject:
   - component: {fileID: 8663930305876397444}
   - component: {fileID: 8663930305876397446}
   - component: {fileID: 8663930305876397447}
-  m_Layer: 0
+  - component: {fileID: -260540411351110165}
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5030,3 +5045,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &-260540411351110165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663930305876397450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -41,7 +41,9 @@ public class GunModule : Module
         Vector3 dir = (aimPoint - transform.position).normalized;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, 100f))
+        int mask = 1 << gameObject.layer;
+        mask = ~mask;
+        if (Physics.Raycast(transform.position, dir, out hit, 100f, mask))
         {
             GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
             if (FirstParent(hit.collider.transform))
