@@ -4,11 +4,18 @@ using UnityEngine;
 
 public abstract class Module : HealthEntity
 {
+    protected PlayerCar player;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        hitmarker = GameObject.Find("Hitmarker").GetComponent<Animator>();
+        player = transform.root.GetComponent<PlayerCar>();
+        hitmarker = GameObject.Find("Hitmarker" + player.playerNumber).GetComponent<Animator>();
+
+        gameObject.layer = player.gameObject.layer;
+        foreach (Transform child in transform)
+            child.gameObject.layer = player.gameObject.layer;
     }
 
     // Update is called once per frame

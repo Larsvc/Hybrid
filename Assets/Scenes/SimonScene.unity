@@ -323,14 +323,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   hitmarker: {fileID: 1121779086}
-  rotateSpeed: 25
+  rotateSpeed: 2
   moveSpeed: 19.23077
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 720051134}
-  horizontalControls: MoveHorizontalP1
-  verticalControls: MoveVerticalP1
-  shoot: FireP1
-  ability: AbilityP1
+  playerNumber: 1
   moduleSlots:
   - {fileID: 1995600184}
   - {fileID: 405060459}
@@ -723,7 +720,7 @@ GameObject:
   - component: {fileID: 387400802}
   - component: {fileID: 387400801}
   m_Layer: 5
-  m_Name: RawImage (1)
+  m_Name: Crosshair2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11580,7 +11577,7 @@ GameObject:
   - component: {fileID: 885696259}
   - component: {fileID: 885696258}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Crosshair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11767,11 +11764,8 @@ MonoBehaviour:
   target: {fileID: 84519440}
   playerHip: {fileID: 2011589084}
   distance: 5
-  xSpeed: 120
-  ySpeed: 120
   lookHorizontal: LookHorizontalP1
   lookVertical: LookVerticalP1
-  lookModifier: 0.001
   yMinLimit: -20
   yMaxLimit: 80
   distanceMin: 0.5
@@ -11961,7 +11955,7 @@ GameObject:
   - component: {fileID: 1121779086}
   - component: {fileID: 1121779087}
   m_Layer: 5
-  m_Name: Hitmarker
+  m_Name: Hitmarker1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12753,7 +12747,7 @@ GameObject:
   - component: {fileID: 1645103054}
   - component: {fileID: 1645103053}
   m_Layer: 7
-  m_Name: Player2 (1)
+  m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12905,14 +12899,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   hitmarker: {fileID: 2129985764}
-  rotateSpeed: 25
+  rotateSpeed: 2
   moveSpeed: 19.23077
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 701649968}
-  horizontalControls: MoveHorizontalP2
-  verticalControls: MoveVerticalP2
-  shoot: FireP2
-  ability: AbilityP2
+  playerNumber: 2
   moduleSlots:
   - {fileID: 1931973670}
   - {fileID: 57876036}
@@ -13255,7 +13246,7 @@ GameObject:
   - component: {fileID: 1852468616}
   - component: {fileID: 1852468615}
   m_Layer: 0
-  m_Name: CameraParent1 (1)
+  m_Name: CameraParent2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13276,11 +13267,8 @@ MonoBehaviour:
   target: {fileID: 1645103060}
   playerHip: {fileID: 1669832107}
   distance: 5
-  xSpeed: 120
-  ySpeed: 120
   lookHorizontal: LookHorizontalP2
   lookVertical: LookVerticalP2
-  lookModifier: 0.001
   yMinLimit: -20
   yMaxLimit: 80
   distanceMin: 0.5
@@ -13470,14 +13458,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   hitmarker: {fileID: 1121779086}
-  rotateSpeed: 25
+  rotateSpeed: 2
   moveSpeed: 19.23077
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
-  horizontalControls: MoveHorizontalP2
-  verticalControls: MoveVerticalP2
-  shoot: Fire1
-  ability: Fire3
+  playerNumber: 0
   moduleSlots: []
 --- !u!65 &1907667572
 BoxCollider:
@@ -13838,7 +13823,7 @@ GameObject:
   - component: {fileID: 2129985764}
   - component: {fileID: 2129985763}
   m_Layer: 5
-  m_Name: Hitmarker (1)
+  m_Name: Hitmarker2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

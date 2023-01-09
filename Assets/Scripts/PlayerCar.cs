@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class PlayerCar : HealthEntity
 {
-    [SerializeField] private float rotateSpeed = 5f;
-    [SerializeField] public float moveSpeed = 10f;
+    public float rotateSpeed = 3f;
+    public float moveSpeed = 16f;
     
     [SerializeField] private AudioClip hitSound;
 
@@ -20,10 +20,12 @@ public class PlayerCar : HealthEntity
     private float hor;
     private float vert;
 
-    public string horizontalControls = "MoveHorizontalP1";
-    public string verticalControls = "MoveVerticalP1";
-    public string shoot = "FireP1";
-    public string ability = "AbilityP1";
+    public int playerNumber = 1;
+
+    private const string horizontalControls = "MoveHorizontalP";
+    private const string verticalControls = "MoveVerticalP";
+    private const string shoot = "FireP";
+    private const string ability = "AbilityP";
 
     private float normalVolume;
     private bool canShoot = true;
@@ -68,7 +70,6 @@ public class PlayerCar : HealthEntity
             {
                 GameObject module = Instantiate(modulePrefab, moduleSlots[i].position, Quaternion.identity, moduleSlots[i]);
                 module.transform.forward = transform.forward;
-                module.layer = gameObject.layer;
             }
         }
     }
@@ -87,24 +88,25 @@ public class PlayerCar : HealthEntity
 
         HandleMovement();
 
-        if (Input.GetAxisRaw(shoot) != 0 && canShoot)
+        if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
             SetShootTrigger();
 
-        if (Input.GetAxisRaw(ability) != 0)
+        if (Input.GetAxisRaw(ability + playerNumber) != 0)
             ActivateAbilities();
     }
 
     private void FixedUpdate()
     {
-        rb.AddTorque(transform.up * hor * rotateSpeed);
+        //rb.AddTorque(transform.up * hor * rotateSpeed);
+        rb.MoveRotation(Quaternion.Euler(transform.up * hor * rotateSpeed) * transform.rotation);
         //transform.position += transform.forward * vert * moveSpeed * Time.deltaTime;
         rb.AddForce(transform.forward * vert * moveSpeed, ForceMode.Acceleration);
     }
 
     private void HandleMovement()
     {
-        hor = Input.GetAxisRaw(horizontalControls);
-        vert = Input.GetAxisRaw(verticalControls);
+        hor = Input.GetAxisRaw(horizontalControls + playerNumber);
+        vert = Input.GetAxisRaw(verticalControls + playerNumber);
 
         audioSource.volume = Mathf.Lerp(0, normalVolume, rb.velocity.magnitude / 5f);
         audioSource.pitch = Mathf.Lerp(0.6f, 1f, rb.velocity.magnitude / 5f);
@@ -116,7 +118,7 @@ public class PlayerCar : HealthEntity
     {
         foreach(GunModule gun in gunModules)
         {
-            gun.Fire(cam);
+            gun.Fire();
         }
     }
 

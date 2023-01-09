@@ -12,10 +12,14 @@ public class GunModule : Module
 
     [SerializeField] private float damage = 6f;
 
+    private CameraShake camShake;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        Debug.Log("cum 2");
+        camShake = player.cam.GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -29,14 +33,14 @@ public class GunModule : Module
         Debug.DrawRay(transform.position, dir * 100f, Color.red);*/
     }
 
-    public void Fire(Camera cam)
+    public void Fire()
     {
         if (!canShoot)
             return;
 
        transform.GetComponentInChildren<ParticleSystem>().Play();
 
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = player.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Vector3 aimPoint = ray.GetPoint(40f);
         Vector3 dir = (aimPoint - transform.position).normalized;
 
@@ -49,15 +53,15 @@ public class GunModule : Module
             if (FirstParent(hit.collider.transform))
             {
                 FirstParent(hit.collider.transform).TakeHit(damage);
-                Destroy(hitEffect, 1f);
             }
+            Destroy(hitEffect, 1f);
         }
 
 
         Rigidbody bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
 
-        Camera.main.GetComponent<CameraShake>().startShaking(0.1f, 0.03f, 150f);
+        camShake.startShaking(0.1f, 0.03f, 150f);
 
         if (hit.transform)
         bullet.GetComponent<Bullet>().hitPoint = hit.point;

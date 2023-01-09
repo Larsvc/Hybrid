@@ -10,13 +10,13 @@ public class MouseOrbit : MonoBehaviour
     public Transform playerHip;
 
     public float distance = 5.0f;
-    public float xSpeed = 120.0f;
-    public float ySpeed = 120.0f;
+    public static float xSpeed = 150.0f;
+    public static float ySpeed = 100.0f;
 
     public string lookHorizontal = "Mouse X";
     public string lookVertical = "Mouse Y";
 
-    public float lookModifier = 0.1f;
+    public static float lookModifier = 1f;
 
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
@@ -70,8 +70,8 @@ public class MouseOrbit : MonoBehaviour
 
         if (target)
         {
-            x += Input.GetAxis(lookHorizontal) * xSpeed * distance * lookModifier;
-            y -= Input.GetAxis(lookVertical) * ySpeed * lookModifier;
+            x += Input.GetAxis(lookHorizontal) * xSpeed * lookModifier * Time.deltaTime;
+            y -= Input.GetAxis(lookVertical) * ySpeed * lookModifier * Time.deltaTime;
             /*else if (isMoving || Input.GetMouseButton(1))
               {
                   x = target.eulerAngles.y;
@@ -86,14 +86,14 @@ public class MouseOrbit : MonoBehaviour
 
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
 
-            RaycastHit hit;
+            /*RaycastHit hit;
             int mask = 1 << 6; //TODO: idk if work
             mask = mask << 7;
             mask = ~mask;
             if (Physics.Linecast(target.position, transform.position, out hit, mask))
             {
                 distance -= hit.distance;
-            }
+            }*/
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             Vector3 position = rotation * negDistance + playerHip.position + Vector3.up;
 
