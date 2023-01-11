@@ -36,7 +36,7 @@ public class PlayerCar : HealthEntity
     [SerializeField] private Transform[] moduleSlots;
     private string[] selectedModules;
 
-    private GunModule[] gunModules;
+    private ShootModule[] gunModules;
     private AbilityModule[] abilityModules;
     #endregion
 
@@ -52,7 +52,7 @@ public class PlayerCar : HealthEntity
         healthText = GetComponentInChildren<TextMeshPro>();
 
         LoadModules();
-        gunModules = transform.Find("Modules").GetComponentsInChildren<GunModule>();
+        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>();
         abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>();
     }
 
@@ -116,7 +116,7 @@ public class PlayerCar : HealthEntity
 
     private void SetShootTrigger()
     {
-        foreach(GunModule gun in gunModules)
+        foreach(ShootModule gun in gunModules)
         {
             gun.Fire();
         }

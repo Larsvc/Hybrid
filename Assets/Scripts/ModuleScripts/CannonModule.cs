@@ -3,50 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunModule : ShootModule
+public class CannonModule : ShootModule
 {
-    private float chargeAmount;
 
-    private Transform minigunBarrel;
-    private float minigunRotationSpeed = 1000f;
-    private int bulletCount;
+    [SerializeField] private AudioClip cannonShot;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         camShake = player.cam.GetComponent<CameraShake>();
-
-        minigunBarrel = transform.GetChild(0);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        /*Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        Vector3 aimPoint = ray.GetPoint(40f);
-        Vector3 dir = (aimPoint - transform.position).normalized;
-
-        Debug.DrawRay(transform.position, dir * 100f, Color.red);*/
-        minigunBarrel.Rotate(Vector3.forward * minigunRotationSpeed * Time.deltaTime * chargeAmount);
-
-        if (chargeAmount > 0)
-            chargeAmount -= 1f * Time.deltaTime;
     }
 
     public override void Fire()
     {
-        if (chargeAmount < 1)
-        {
-            chargeAmount += 2f * Time.deltaTime;
-            return;
-        }
-
         if (!canShoot)
             return;
 
-       transform.GetComponentInChildren<ParticleSystem>().Play();
+        transform.GetComponentInChildren<ParticleSystem>().Play();
+
+        audioSource.PlayOneShot(cannonShot);
 
         int mask = 1 << gameObject.layer;
         mask = ~mask;
@@ -56,16 +40,15 @@ public class GunModule : ShootModule
         bool hasHit = Physics.Raycast(player.cam.transform.position, player.cam.transform.forward, out camHit, 100f, mask);
         Vector3 aimPoint = ray.GetPoint(100f);
 
-        float angle = 2 * Mathf.PI * bulletCount / 10;
-        Vector2 spawnPos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 0.3f;
+        player.GetComponent<Rigidbody>().AddForce(-transform.forward * 300f);
 
         // Transform random position from local to world space
-        Vector3 spawnPoint = transform.TransformPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
+        Vector3 spawnPoint = transform.position + transform.forward * 3f;
 
         Vector3 dir = (aimPoint - spawnPoint).normalized;
         if (hasHit)
             dir = (camHit.point - spawnPoint).normalized; //(aimPoint - transform.position).normalized;
-
+/*
 
         RaycastHit hit;
         if (Physics.Raycast(spawnPoint, dir, out hit, 100f, mask))
@@ -76,22 +59,20 @@ public class GunModule : ShootModule
                 FirstParent(hit.collider.transform).TakeHit(damage);
             }
             Destroy(hitEffect, 1f);
-        }
+        }*/
 
 
         Rigidbody bullet = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
 
-        camShake.startShaking(0.1f, 0.03f, 150f);
+        camShake.startShaking(0.15f, 0.1f, 120f);
 
-        if (hit.transform)
-        bullet.GetComponent<Bullet>().hitPoint = hit.point;
+        /*if (hit.transform)
+        bullet.GetComponent<Bullet>().hitPoint = hit.point;*/
 
         Destroy(bullet.gameObject, 2f);
 
         canShoot = false;
-
-        bulletCount  = (bulletCount + 1) % 10;
 
        StartCoroutine(WaitForFireRate());
     }
