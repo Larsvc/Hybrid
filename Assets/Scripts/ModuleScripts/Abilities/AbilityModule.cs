@@ -28,7 +28,8 @@ public abstract class AbilityModule : Module
         if (!canActivate)
             return;
 
-        transform.GetComponentInChildren<ParticleSystem>().Play();
+        if (GetComponentInChildren<ParticleSystem>())
+            GetComponentInChildren<ParticleSystem>().Play();
         if (GetComponentInChildren<AudioSource>())
             GetComponentInChildren<AudioSource>().Play();
 
