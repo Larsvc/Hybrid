@@ -29,6 +29,8 @@ public abstract class AbilityModule : Module
             return;
 
         transform.GetComponentInChildren<ParticleSystem>().Play();
+        if (GetComponentInChildren<AudioSource>())
+            GetComponentInChildren<AudioSource>().Play();
 
         doAbility();
 
@@ -37,7 +39,7 @@ public abstract class AbilityModule : Module
         StartCoroutine(WaitForCooldown());
     }
 
-    public abstract void doAbility();
+    protected abstract void doAbility();
 
     IEnumerator WaitForCooldown()
     {

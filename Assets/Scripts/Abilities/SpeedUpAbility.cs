@@ -9,35 +9,46 @@ public class SpeedUpAbility : AbilityModule
     public float speedUpModifier = 2;
     public float spedUpTime = 4;
 
+    bool activated;
+
     protected override float Cooldown
     {
         get { return 10f; }
     }
 
-    public override void doAbility()
+    protected override void doAbility()
     {
-        player.GetComponent<PlayerCar>().moveSpeed = basePlayerSpeed * speedUpModifier;
+        //player.GetComponent<PlayerCar>().moveSpeed = basePlayerSpeed * speedUpModifier;
+        activated = true;
         StartCoroutine(WaitForEffectEnd());
     }
 
     IEnumerator WaitForEffectEnd()
     {
         yield return new WaitForSeconds(spedUpTime);
-        player.GetComponent<PlayerCar>().moveSpeed = basePlayerSpeed;
+        //player.GetComponent<PlayerCar>().moveSpeed = basePlayerSpeed;
+        activated = false;
+        GetComponentInChildren<AudioSource>().Stop();
     }
 
 
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
         player = transform.root.gameObject;
         basePlayerSpeed = player.GetComponent<PlayerCar>().moveSpeed;
-        base.Start();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        if (activated)
+            player.GetComponent<Rigidbody>().AddForce(player.transform.forward, ForceMode.Impulse);
     }
 }

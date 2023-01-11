@@ -40,13 +40,20 @@ public class GunModule : Module
 
        transform.GetComponentInChildren<ParticleSystem>().Play();
 
-        Ray ray = player.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        Vector3 aimPoint = ray.GetPoint(40f);
-        Vector3 dir = (aimPoint - transform.position).normalized;
-
-        RaycastHit hit;
         int mask = 1 << gameObject.layer;
         mask = ~mask;
+
+        Ray ray = player.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit camHit;
+        bool hasHit = Physics.Raycast(player.cam.transform.position, player.cam.transform.forward, out camHit, 100f, mask);
+        Vector3 aimPoint = ray.GetPoint(100f);
+
+        Vector3 dir = (aimPoint - transform.position).normalized;
+        if (hasHit)
+            dir = (camHit.point - transform.position).normalized; //(aimPoint - transform.position).normalized;
+
+
+        RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit, 100f, mask))
         {
             GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
