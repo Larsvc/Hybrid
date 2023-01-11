@@ -15,7 +15,17 @@ public class RamModule : Module
 
     private float actualDamage
     {
-        get { return (damage / maxDamageVelocity) * player.GetComponent<Rigidbody>().velocity.magnitude; }
+        get { return damage * multiplier; }
+    }
+
+    private float force
+    {
+        get { return 3000f * multiplier; }
+    }
+
+    private float multiplier
+    {
+        get { return player.GetComponent<Rigidbody>().velocity.magnitude / maxDamageVelocity; }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +34,9 @@ public class RamModule : Module
         if (otherBase.tag == "Player" && otherBase != transform.root)
         {
             other.transform.GetComponent<HealthEntity>().TakeHit(actualDamage);
+            otherBase.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Force);
+            player.GetComponent<Rigidbody>().velocity *= 0.8f;
+            player.cam.GetComponent<CameraShake>().startShaking(0.2f, 1f * multiplier, 80f);
         }
     }
 }
