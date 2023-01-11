@@ -11,6 +11,11 @@ public class GunModule : Module
     [SerializeField] private float fireRate = 9f;
 
     [SerializeField] private float damage = 6f;
+    private float chargeAmount;
+
+    private Transform minigunBarrel;
+    private float minigunRotationSpeed = 1000f;
+    private int bulletCount;
 
     private CameraShake camShake;
 
@@ -18,8 +23,9 @@ public class GunModule : Module
     protected override void Start()
     {
         base.Start();
-        Debug.Log("cum 2");
         camShake = player.cam.GetComponent<CameraShake>();
+
+        minigunBarrel = transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -31,10 +37,20 @@ public class GunModule : Module
         Vector3 dir = (aimPoint - transform.position).normalized;
 
         Debug.DrawRay(transform.position, dir * 100f, Color.red);*/
+        minigunBarrel.Rotate(Vector3.forward * minigunRotationSpeed * Time.deltaTime * chargeAmount);
+
+        if (chargeAmount > 0)
+            chargeAmount -= 1f * Time.deltaTime;
     }
 
     public void Fire()
     {
+        if (chargeAmount < 1)
+        {
+            chargeAmount += 2f * Time.deltaTime;
+            return;
+        }
+
         if (!canShoot)
             return;
 
@@ -48,13 +64,19 @@ public class GunModule : Module
         bool hasHit = Physics.Raycast(player.cam.transform.position, player.cam.transform.forward, out camHit, 100f, mask);
         Vector3 aimPoint = ray.GetPoint(100f);
 
-        Vector3 dir = (aimPoint - transform.position).normalized;
+        float angle = 2 * Mathf.PI * bulletCount / 10;
+        Vector2 spawnPos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 0.3f;
+
+        // Transform random position from local to world space
+        Vector3 spawnPoint = transform.TransformPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
+
+        Vector3 dir = (aimPoint - spawnPoint).normalized;
         if (hasHit)
-            dir = (camHit.point - transform.position).normalized; //(aimPoint - transform.position).normalized;
+            dir = (camHit.point - spawnPoint).normalized; //(aimPoint - transform.position).normalized;
 
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, 100f, mask))
+        if (Physics.Raycast(spawnPoint, dir, out hit, 100f, mask))
         {
             GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
             if (FirstParent(hit.collider.transform))
@@ -65,7 +87,7 @@ public class GunModule : Module
         }
 
 
-        Rigidbody bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        Rigidbody bullet = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
 
         camShake.startShaking(0.1f, 0.03f, 150f);
@@ -76,6 +98,8 @@ public class GunModule : Module
         Destroy(bullet.gameObject, 2f);
 
         canShoot = false;
+
+        bulletCount  = (bulletCount + 1) % 10;
 
        StartCoroutine(WaitForFireRate());
     }

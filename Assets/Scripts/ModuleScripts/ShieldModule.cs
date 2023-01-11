@@ -7,7 +7,7 @@ public class ShieldModule : Module
 
     protected override void Die()
     {
+        Destroy(transform.GetChild(0).gameObject);
         base.Die();
-        Destroy(transform.GetChild(0));
     }
 }

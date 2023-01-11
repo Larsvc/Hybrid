@@ -11763,7 +11763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 84519440}
   playerHip: {fileID: 2011589084}
-  distance: 5
+  distance: 7
   lookHorizontal: LookHorizontalP1
   lookVertical: LookVerticalP1
   yMinLimit: -20
@@ -13268,7 +13268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1645103060}
   playerHip: {fileID: 1669832107}
-  distance: 5
+  distance: 7
   lookHorizontal: LookHorizontalP2
   lookVertical: LookVerticalP2
   yMinLimit: -20
