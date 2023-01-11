@@ -26,6 +26,9 @@ public abstract class Module : HealthEntity
 
     protected override void Die()
     {
+        GameObject explosion = Instantiate(PrefabManager.instance.moduleExplosion, transform.position, Quaternion.identity);
+        Destroy(explosion, 2f);
+
         transform.SetParent(null);
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.mass = 0.01f;

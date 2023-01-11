@@ -12715,6 +12715,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffectParticles: {fileID: 8423015069992581549, guid: c8cbe98be919e6841a18e13b246fb7cc,
     type: 3}
+  moduleExplosion: {fileID: 746500364212072080, guid: 07e41d6b15017ab48b7a2667b8d566d8,
+    type: 3}
 --- !u!4 &1594102957
 Transform:
   m_ObjectHideFlags: 0

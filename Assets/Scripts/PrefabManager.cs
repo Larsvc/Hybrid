@@ -6,6 +6,8 @@ public class PrefabManager : MonoBehaviour
 {
     public static PrefabManager instance;
     public GameObject hitEffectParticles;
+    public GameObject moduleExplosion;
+
     // Start is called before the first frame update
     void Start()
     {
