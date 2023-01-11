@@ -323,8 +323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   hitmarker: {fileID: 1121779086}
-  rotateSpeed: 2
-  moveSpeed: 19.23077
+  rotateSpeed: 2.5
+  moveSpeed: 32
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 720051134}
   playerNumber: 1
@@ -12899,8 +12899,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   hitmarker: {fileID: 2129985764}
-  rotateSpeed: 2
-  moveSpeed: 19.23077
+  rotateSpeed: 2.5
+  moveSpeed: 32
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 701649968}
   playerNumber: 2

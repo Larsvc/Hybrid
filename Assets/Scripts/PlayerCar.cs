@@ -108,8 +108,8 @@ public class PlayerCar : HealthEntity
         hor = Input.GetAxisRaw(horizontalControls + playerNumber);
         vert = Input.GetAxisRaw(verticalControls + playerNumber);
 
-        audioSource.volume = Mathf.Lerp(0, normalVolume, rb.velocity.magnitude / 5f);
-        audioSource.pitch = Mathf.Lerp(0.6f, 1f, rb.velocity.magnitude / 5f);
+        audioSource.volume = Mathf.Lerp(0, normalVolume, rb.velocity.magnitude / (moveSpeed / 4));
+        audioSource.pitch = Mathf.Lerp(0.6f, 1f, rb.velocity.magnitude / (moveSpeed / 4));
 
         animator.SetFloat("speed", rb.velocity.magnitude);
     }
