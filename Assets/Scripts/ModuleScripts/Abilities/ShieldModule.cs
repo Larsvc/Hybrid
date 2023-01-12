@@ -6,7 +6,7 @@ public class ShieldModule : AbilityModule
 {
 
     bool active = false;
-    public float shieldTime = 2f;
+    public float shieldTime = 3.5f;
 
     protected override float Cooldown
     {

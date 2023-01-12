@@ -12717,6 +12717,8 @@ MonoBehaviour:
     type: 3}
   moduleExplosion: {fileID: 746500364212072080, guid: 07e41d6b15017ab48b7a2667b8d566d8,
     type: 3}
+  cannonballExplosion: {fileID: 5173407807777630212, guid: e641606e5a3748840805f9b4aadc44ba,
+    type: 3}
 --- !u!4 &1594102957
 Transform:
   m_ObjectHideFlags: 0

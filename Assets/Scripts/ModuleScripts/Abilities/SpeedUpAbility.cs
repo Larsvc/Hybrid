@@ -6,7 +6,8 @@ public class SpeedUpAbility : AbilityModule
 {
     GameObject player;
     float basePlayerSpeed;
-    public float speedUpModifier = 2;
+    //public float speedUpModifier = 2;
+    public float forceModifier = .6f;
     public float spedUpTime = 4;
 
     bool activated;
@@ -49,6 +50,6 @@ public class SpeedUpAbility : AbilityModule
     private void FixedUpdate()
     {
         if (activated)
-            player.GetComponent<Rigidbody>().AddForce(player.transform.forward, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * forceModifier, ForceMode.Impulse);
     }
 }

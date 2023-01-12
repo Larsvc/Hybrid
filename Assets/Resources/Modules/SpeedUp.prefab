@@ -5138,7 +5138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 250
   hitmarker: {fileID: 0}
-  speedUpModifier: 2
+  forceModifier: 0.6
   spedUpTime: 4
 --- !u!65 &3919303467022815087
 BoxCollider:
