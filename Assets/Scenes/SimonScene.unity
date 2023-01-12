@@ -873,6 +873,8 @@ MonoBehaviour:
   moduleSlots:
   - {fileID: 1995600184}
   - {fileID: 405060459}
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &84519437
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1551,6 +1553,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   playerNumber: 1
   moduleSlots: []
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &232257452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7644,13 +7648,15 @@ MonoBehaviour:
   health: 1000
   hitmarker: {fileID: 353755095}
   rotateSpeed: 2
-  moveSpeed: 19.23077
+  moveSpeed: 32
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 256603715}
   playerNumber: 2
   moduleSlots:
   - {fileID: 1159223225}
   - {fileID: 127301451}
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &433748078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7907,6 +7913,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   playerNumber: 0
   moduleSlots: []
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &458449622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13892,6 +13900,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   playerNumber: 1
   moduleSlots: []
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &623082166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20121,6 +20131,8 @@ MonoBehaviour:
   moduleSlots:
   - {fileID: 368498063}
   - {fileID: 153986307}
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &864067475
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21559,6 +21571,7 @@ MonoBehaviour:
   hitEffectParticles: {fileID: 8423015069992581549, guid: c8cbe98be919e6841a18e13b246fb7cc,
     type: 3}
   moduleExplosion: {fileID: 0}
+  cannonballExplosion: {fileID: 0}
 --- !u!4 &1103597409
 Transform:
   m_ObjectHideFlags: 0
@@ -32578,13 +32591,15 @@ MonoBehaviour:
   health: 1000
   hitmarker: {fileID: 1607875644}
   rotateSpeed: 2
-  moveSpeed: 19.23077
+  moveSpeed: 32
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 47804971}
   playerNumber: 1
   moduleSlots:
   - {fileID: 416927743}
   - {fileID: 534630310}
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &1366912128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34026,6 +34041,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   playerNumber: 1
   moduleSlots: []
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &1780798558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39186,6 +39203,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   playerNumber: 1
   moduleSlots: []
+  selectedModules: []
+  pickingModules: 0
 --- !u!65 &1907667572
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39552,6 +39571,7 @@ MonoBehaviour:
     type: 3}
   moduleExplosion: {fileID: 746500364212072080, guid: 07e41d6b15017ab48b7a2667b8d566d8,
     type: 3}
+  cannonballExplosion: {fileID: 0}
 --- !u!4 &1953207272
 Transform:
   m_ObjectHideFlags: 0

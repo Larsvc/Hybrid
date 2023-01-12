@@ -46,7 +46,7 @@ public class GunModule : ShootModule
         if (!canShoot)
             return;
 
-       transform.GetComponentInChildren<ParticleSystem>().Play();
+        transform.GetComponentInChildren<ParticleSystem>().Play();
 
         int mask = 1 << gameObject.layer;
         mask = ~mask;

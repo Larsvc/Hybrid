@@ -40,7 +40,7 @@ public class CannonModule : ShootModule
         bool hasHit = Physics.Raycast(player.cam.transform.position, player.cam.transform.forward, out camHit, 100f, mask);
         Vector3 aimPoint = ray.GetPoint(100f);
 
-        player.GetComponent<Rigidbody>().AddForce(-transform.forward * 300f);
+        player.GetComponent<Rigidbody>().AddForce(-transform.forward * 120f);
 
         // Transform random position from local to world space
         Vector3 spawnPoint = transform.position + transform.forward * 3f;
@@ -64,13 +64,14 @@ public class CannonModule : ShootModule
 
         Rigidbody bullet = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
+        bullet.GetComponent<Projectile>().mask = mask;
 
         camShake.startShaking(0.15f, 0.1f, 120f);
 
         /*if (hit.transform)
         bullet.GetComponent<Bullet>().hitPoint = hit.point;*/
 
-        Destroy(bullet.gameObject, 2f);
+        Destroy(bullet.gameObject, 5f);
 
         canShoot = false;
 

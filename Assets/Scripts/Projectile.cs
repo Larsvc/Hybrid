@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private LayerMask mask;
+    [HideInInspector] public LayerMask mask;
 
     [SerializeField] private float damage = 60f;
     bool dead;
@@ -23,11 +23,11 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!((mask.value & (1 << collision.gameObject.layer)) > 0) && !dead)
+        if (((mask.value & (1 << collision.gameObject.layer)) > 0) && !dead && !collision.collider.gameObject.GetComponent<Projectile>())
         {
             dead = true;
 
-            bool canDamage = FirstParent(collision.transform);
+            bool canDamage = FirstParent(collision.collider.transform);
             if (canDamage)
             {
                 FirstParent(collision.transform).TakeHit(damage);
@@ -41,11 +41,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (!((mask.value & (1 << col.gameObject.layer)) > 0) && !dead)
+        if (((mask.value & (1 << col.gameObject.layer)) > 0) && !dead && !col.GetComponent<Projectile>())
         {
             dead = true;
 
-            bool canDamage = FirstParent(col.transform);
+            bool canDamage = FirstParent(col.transform); //TODO: this gets the parent instead of the child itself
             if (canDamage)
             {
                 FirstParent(col.transform).TakeHit(damage);

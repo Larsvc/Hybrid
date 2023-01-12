@@ -34,11 +34,13 @@ public class PlayerCar : HealthEntity
 
     #region Modules
     [SerializeField] private Transform[] moduleSlots;
-    private string[] selectedModules;
+    [SerializeField] private string[] selectedModules;
 
-    private ShootModule[] gunModules;
-    private AbilityModule[] abilityModules;
+    private List<ShootModule> gunModules = new List<ShootModule>();
+    private List<AbilityModule> abilityModules = new List<AbilityModule>();
     #endregion
+
+    public bool pickingModules;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -51,14 +53,23 @@ public class PlayerCar : HealthEntity
 
         healthText = GetComponentInChildren<TextMeshPro>();
 
-        LoadModules();
-        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>();
-        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>();
+        //LoadModules();
+
+        CheckForModules();
+        FinalizeModuleSelection();
     }
 
-    private void LoadModules()
+    /*private void LoadModules()
     {
         //TODO: selectedModules = read from chips
+
+        foreach (Module m in allModules)
+        {
+            Destroy(m.gameObject);
+        }
+
+        allModules.Clear();
+
         selectedModules = ReadModulesFromChips();
 
         for (int i = 0; i < moduleSlots.Length; i++)
@@ -70,13 +81,66 @@ public class PlayerCar : HealthEntity
             {
                 GameObject module = Instantiate(modulePrefab, moduleSlots[i].position, Quaternion.identity, moduleSlots[i]);
                 module.transform.forward = transform.forward;
+                allModules.Add(module.GetComponent<Module>());
+            }
+        }
+
+        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>().ToList();
+        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>().ToList();
+    }*/
+
+    private void CheckForModules()
+    {
+        selectedModules = ReadModulesFromChips();
+
+        for (int i = 0; i < moduleSlots.Length; i++)
+        {
+            if (moduleSlots[i].childCount == 0 && selectedModules[i] != "")
+            {
+                AddModule(i, selectedModules[i]);
+            }
+            else if (moduleSlots[i].childCount > 0 && !moduleSlots[i].GetChild(0).name.Contains(selectedModules[i]) && selectedModules[i] != "")
+            {
+                RemoveModule(i);
+                AddModule(i, selectedModules[i]);
+            }
+            else if (moduleSlots[i].childCount > 0 && selectedModules[i] == "")
+            {
+                RemoveModule(i);
             }
         }
     }
 
+    private void AddModule(int slot, string moduleName)
+    {
+        GameObject modulePrefab = Resources.Load<GameObject>("Modules/" + moduleName);
+        if (modulePrefab != null)
+        {
+            GameObject module = Instantiate(modulePrefab, moduleSlots[slot].position, Quaternion.identity, moduleSlots[slot]);
+            module.transform.forward = transform.forward;
+            //allModules[slot] = module.GetComponent<Module>();
+        }
+        else
+        {
+            Debug.LogWarning($"The entered module name '{moduleName}' does not exist in the Module folder. Check if is correct or maybe you are just typing :D");
+        }
+    }
+
+    private void RemoveModule(int slot)
+    {
+        Destroy(moduleSlots[slot].GetChild(0).gameObject);
+    }
+
+    private void FinalizeModuleSelection()
+    {
+        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>().ToList();
+        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>().ToList();
+    }
+
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
-        return new string[] { "Shield", "Cannon" };
+        return selectedModules;
+        //return new string[] { "Cannon", "Cannon" };
     }
 
     // Update is called once per frame
@@ -93,6 +157,9 @@ public class PlayerCar : HealthEntity
 
         if (Input.GetAxisRaw(ability + playerNumber) != 0)
             ActivateAbilities();
+
+        if (pickingModules)
+            CheckForModules();
     }
 
     private void FixedUpdate()
