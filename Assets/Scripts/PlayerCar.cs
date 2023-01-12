@@ -17,6 +17,9 @@ public class PlayerCar : HealthEntity
 
     public Camera cam;
 
+    public HealthBar greenHealthBar;
+    public HealthBar redHealthBar;
+
     private float hor;
     private float vert;
 
@@ -54,6 +57,9 @@ public class PlayerCar : HealthEntity
         LoadModules();
         gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>();
         abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>();
+
+        greenHealthBar.SetMaxHealth(health);
+        redHealthBar.SetMaxHealth(health);
     }
 
     private void LoadModules()
@@ -134,6 +140,8 @@ public class PlayerCar : HealthEntity
     {
         base.TakeHit(damage);
         audioSource.PlayOneShot(hitSound);
+        greenHealthBar.SetHealth(health);
+        redHealthBar.SetHealth(health);
     }
 
     protected override void Die()
