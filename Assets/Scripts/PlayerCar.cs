@@ -60,8 +60,6 @@ public class PlayerCar : HealthEntity
 
         CheckForModules();
         FinalizeModuleSelection();
-        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>().ToList();
-        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>().ToList();
 
         greenHealthBar.SetMaxHealth(health);
         redHealthBar.SetMaxHealth(health);
