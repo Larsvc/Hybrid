@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class HealthEntity : MonoBehaviour
 {
-    [SerializeField] protected float health = 1000;
+    [SerializeField] protected float maxHealth = 1000;
+    protected float health;
     [SerializeField] protected Animator hitmarker;
     protected Animator animator;
 
@@ -15,6 +16,7 @@ public abstract class HealthEntity : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        health = maxHealth;
         animator = GetComponent<Animator>();
     }
 
