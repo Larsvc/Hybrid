@@ -23,6 +23,7 @@ public class PlayerCar : HealthEntity
     public float respawnTime = 5f;
     public GameObject deathScreen;
     public Transform respawnPoint;
+    public MouseOrbit mouseLook;
     private bool dead = false;
     private float respawnTimer;
 
@@ -45,7 +46,7 @@ public class PlayerCar : HealthEntity
     [SerializeField] private Transform[] moduleSlots;
     [SerializeField] private string[] selectedModules;
 
-    private List<ShootModule> gunModules = new List<ShootModule>();
+    public List<ShootModule> gunModules = new List<ShootModule>();
     private List<AbilityModule> abilityModules = new List<AbilityModule>();
     #endregion
 
@@ -68,8 +69,6 @@ public class PlayerCar : HealthEntity
 
         CheckForModules();
         FinalizeModuleSelection();
-        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>().ToList();
-        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>().ToList();
 
         greenHealthBar.SetMaxHealth(health);
         redHealthBar.SetMaxHealth(health);
@@ -107,7 +106,8 @@ public class PlayerCar : HealthEntity
 
     private void CheckForModules()
     {
-        selectedModules = ReadModulesFromChips();
+        if (!dead)
+            selectedModules = ReadModulesFromChips();
 
         for (int i = 0; i < moduleSlots.Length; i++)
         {
@@ -224,10 +224,16 @@ public class PlayerCar : HealthEntity
     }
 
     private void Respawn()
-    {
+    {        
+        CheckForModules();
+        FinalizeModuleSelection();
         transform.position = respawnPoint.position;
         health = maxHealth;
         deathScreen.SetActive(false);
+        greenHealthBar.SetHealth(health);
+        redHealthBar.SetHealth(health);
+        dead = false;
+        respawnTime = respawnTimer;
     }
 
     public override void TakeHit(float damage)
@@ -245,7 +251,6 @@ public class PlayerCar : HealthEntity
             if (slot.childCount > 0)
                 slot.GetChild(0).GetComponent<Module>().TakeHit(10000);
         }
-        Destroy(gameObject);
 
         respawnTimer = respawnTime;
         deathScreen.SetActive(true);

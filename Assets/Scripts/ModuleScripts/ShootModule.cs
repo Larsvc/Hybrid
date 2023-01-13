@@ -28,5 +28,11 @@ public abstract class ShootModule : Module
         base.Update();
     }
 
+    protected override void Die()
+    {
+        player.gunModules.Remove(this);
+        base.Die();
+    }
+
     public abstract void Fire();
 }

@@ -5,7 +5,7 @@ using System.Linq;
 [AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class MouseOrbit : MonoBehaviour
 {
-    public Transform target;
+    public PlayerCar target;
     public Transform playerHip;
 
     public float distance = 5.0f;
@@ -48,15 +48,16 @@ public class MouseOrbit : MonoBehaviour
             rigidbody.freezeRotation = true;
         }
 
-        modules = target.Find("Modules").GetComponentsInChildren<ShootModule>();
+        //modules = target.Find("Modules").GetComponentsInChildren<ShootModule>();
     }
 
     void RotateGunModules()
     {
-        if (modules.Length == 0)
-            modules = target.Find("Modules").GetComponentsInChildren<ShootModule>();
+        //if (modules.Length == 0)
+           // modules = target.Find("Modules").GetComponentsInChildren<ShootModule>();
 
-        foreach (ShootModule g in modules)
+        
+        foreach (ShootModule g in target.gunModules)
         {
             Transform m = g.transform;
             m.eulerAngles = new Vector3(m.eulerAngles.x, transform.eulerAngles.y, m.eulerAngles.z);
