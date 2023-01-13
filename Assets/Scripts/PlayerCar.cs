@@ -155,8 +155,8 @@ public class PlayerCar : HealthEntity
 
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
-        return selectedModules;
-        //return new string[] { "Cannon", "Cannon" };
+        //return selectedModules;
+        return new string[] { "Gun", "Gun" };
     }
 
     // Update is called once per frame
@@ -240,6 +240,11 @@ public class PlayerCar : HealthEntity
 
     protected override void Die()
     {
+        foreach(Transform slot in moduleSlots)
+        {
+            if (slot.childCount > 0)
+                slot.GetChild(0).GetComponent<Module>().TakeHit(10000);
+        }
         Destroy(gameObject);
 
         respawnTimer = respawnTime;
