@@ -63,7 +63,7 @@ public class PlayerCar : HealthEntity
         normalVolume = audioSource.volume;
 
         healthText = GetComponentInChildren<TextMeshPro>();
-        greenHealthBar = GameObject.Find("Healthbar" + playerNumber).GetComponent<HealthBar>();
+        greenHealthBar = GameObject.Find("HealthBar" + playerNumber).GetComponent<HealthBar>();
         respawnPoint = GameObject.Find($"Player{playerNumber}Spawn").transform;
 
         //LoadModules();
