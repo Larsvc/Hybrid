@@ -9,7 +9,10 @@ public class PlayerCar : HealthEntity
 {
     [Header("Properties")]
     public float rotateSpeed = 3f;
-    public float moveSpeed = 16f;
+    public float moveSpeed
+    {
+        get { return 35f - 32f * 0.1f * moduleSlots.Where(m => m.transform.childCount > 0).ToArray().Length; }
+    }
 
     public int playerNumber = 1;
 
@@ -27,8 +30,7 @@ public class PlayerCar : HealthEntity
     public float respawnTime = 5f;
     public GameObject deathScreen;
     private Transform respawnPoint;
-    private bool dead = false;
-    private float respawnTimer;
+    private float respawnTimer = 5f;
 
     private float hor;
     private float vert;
@@ -109,7 +111,7 @@ public class PlayerCar : HealthEntity
 
     private void CheckForModules()
     {
-        if (!dead)
+        if (!IsDead)
             selectedModules = ReadModulesFromChips();
 
         for (int i = 0; i < moduleSlots.Length; i++)
@@ -159,7 +161,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Gun", "Gun" };
+        return new string[] { "Gun", "Cannon", "Gun", "SpeedUp" };
     }
 
     // Update is called once per frame
@@ -169,7 +171,8 @@ public class PlayerCar : HealthEntity
 
         healthText.text = "Health: " + health;
 
-        HandleMovement();
+        if (!IsDead)
+            HandleMovement();
 
         if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
             SetShootTrigger();
@@ -180,14 +183,14 @@ public class PlayerCar : HealthEntity
         if (pickingModules)
             CheckForModules();
 
-        if (dead)
+        if (IsDead)
         {
-            respawnTime -= Time.deltaTime;
-            deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTime) + " seconds.";
+            respawnTimer -= Time.deltaTime;
+            deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
         }
             
 
-        if (respawnTime <= 0)
+        if (respawnTimer <= 0)
             Respawn();
     }
 
@@ -235,16 +238,19 @@ public class PlayerCar : HealthEntity
         deathScreen.SetActive(false);
         greenHealthBar.SetHealth(health);
         redHealthBar.SetHealth(health);
-        dead = false;
-        respawnTime = respawnTimer;
+        IsDead = false;
+        respawnTimer = respawnTime;
     }
 
     public override void TakeHit(float damage)
     {
-        base.TakeHit(damage);
-        audioSource.PlayOneShot(hitSound);
-        greenHealthBar.SetHealth(health);
-        redHealthBar.SetHealth(health);
+        if (!IsDead)
+        {
+            base.TakeHit(damage);
+            audioSource.PlayOneShot(hitSound);
+            greenHealthBar.SetHealth(health);
+            redHealthBar.SetHealth(health);
+        }
     }
 
     protected override void Die()
@@ -255,8 +261,7 @@ public class PlayerCar : HealthEntity
                 slot.GetChild(0).GetComponent<Module>().TakeHit(10000);
         }
 
-        respawnTimer = respawnTime;
         deathScreen.SetActive(true);
-        dead = true;
+        IsDead = true;
     }
 }

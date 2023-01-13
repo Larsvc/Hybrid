@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafc9f40ab9e1174b9d0466ddd07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
+  maxHealth: 250
   hitmarker: {fileID: 0}
   bulletForce: 250
   bulletPrefab: {fileID: 3667592480458627293, guid: 75fb051c5ae1f6d4ead72d1e087bd647,
