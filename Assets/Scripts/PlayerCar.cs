@@ -7,9 +7,12 @@ using UnityEngine;
 
 public class PlayerCar : HealthEntity
 {
+    [Header("Properties")]
     public float rotateSpeed = 3f;
     public float moveSpeed = 16f;
-    
+
+    public int playerNumber = 1;
+
     [SerializeField] private AudioClip hitSound;
 
     private Rigidbody rb;
@@ -17,20 +20,18 @@ public class PlayerCar : HealthEntity
 
     public Camera cam;
 
-    public HealthBar greenHealthBar;
-    public HealthBar redHealthBar;
+    private HealthBar greenHealthBar;
+    private HealthBar redHealthBar;
 
+    [Header("Respawn")]
     public float respawnTime = 5f;
     public GameObject deathScreen;
-    public Transform respawnPoint;
-    public MouseOrbit mouseLook;
+    private Transform respawnPoint;
     private bool dead = false;
     private float respawnTimer;
 
     private float hor;
     private float vert;
-
-    public int playerNumber = 1;
 
     private const string horizontalControls = "MoveHorizontalP";
     private const string verticalControls = "MoveVerticalP";
@@ -46,7 +47,7 @@ public class PlayerCar : HealthEntity
     [SerializeField] private Transform[] moduleSlots;
     [SerializeField] private string[] selectedModules;
 
-    public List<ShootModule> gunModules = new List<ShootModule>();
+    [HideInInspector]public List<ShootModule> gunModules = new List<ShootModule>();
     private List<AbilityModule> abilityModules = new List<AbilityModule>();
     #endregion
 
@@ -61,14 +62,16 @@ public class PlayerCar : HealthEntity
         audioSource = GetComponent<AudioSource>();
         normalVolume = audioSource.volume;
 
-        
-
         healthText = GetComponentInChildren<TextMeshPro>();
+        greenHealthBar = GameObject.Find("Healthbar" + playerNumber).GetComponent<HealthBar>();
+        respawnPoint = GameObject.Find($"Player{playerNumber}Spawn").transform;
 
         //LoadModules();
 
         CheckForModules();
         FinalizeModuleSelection();
+
+        redHealthBar = GetComponentInChildren<HealthBar>();
 
         greenHealthBar.SetMaxHealth(health);
         redHealthBar.SetMaxHealth(health);
