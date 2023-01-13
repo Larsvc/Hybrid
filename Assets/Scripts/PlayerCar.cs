@@ -20,6 +20,12 @@ public class PlayerCar : HealthEntity
     public HealthBar greenHealthBar;
     public HealthBar redHealthBar;
 
+    public float respawnTime = 5f;
+    public GameObject deathScreen;
+    public Transform respawnPoint;
+    private bool dead = false;
+    private float respawnTimer;
+
     private float hor;
     private float vert;
 
@@ -53,6 +59,8 @@ public class PlayerCar : HealthEntity
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         normalVolume = audioSource.volume;
+
+        
 
         healthText = GetComponentInChildren<TextMeshPro>();
 
@@ -168,6 +176,16 @@ public class PlayerCar : HealthEntity
 
         if (pickingModules)
             CheckForModules();
+
+        if (dead)
+        {
+            respawnTime -= Time.deltaTime;
+            deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTime) + " seconds.";
+        }
+            
+
+        if (respawnTime <= 0)
+            Respawn();
     }
 
     private void FixedUpdate()
@@ -205,6 +223,13 @@ public class PlayerCar : HealthEntity
         }
     }
 
+    private void Respawn()
+    {
+        transform.position = respawnPoint.position;
+        health = maxHealth;
+        deathScreen.SetActive(false);
+    }
+
     public override void TakeHit(float damage)
     {
         base.TakeHit(damage);
@@ -216,5 +241,9 @@ public class PlayerCar : HealthEntity
     protected override void Die()
     {
         Destroy(gameObject);
+
+        respawnTimer = respawnTime;
+        deathScreen.SetActive(true);
+        dead = true;
     }
 }
