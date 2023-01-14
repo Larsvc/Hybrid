@@ -178,7 +178,10 @@ public class PlayerCar : HealthEntity
             SetShootTrigger();
 
         if (Input.GetAxisRaw(ability + playerNumber) != 0)
+        {
+            Debug.Log(ability + playerNumber + " is ingedrukt neef");
             ActivateAbilities();
+        }
 
         if (pickingModules)
             CheckForModules();
