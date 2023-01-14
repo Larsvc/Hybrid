@@ -161,7 +161,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Gun", "Cannon", "Gun", "SpeedUp" };
+        return new string[] { "Gun", "Gun", "Ram", "SpeedUp" };
     }
 
     // Update is called once per frame
@@ -169,7 +169,7 @@ public class PlayerCar : HealthEntity
     {
         base.Update();
 
-        healthText.text = "Health: " + health;
+        healthText.text = "Health: " + Mathf.CeilToInt(health);
 
         if (!IsDead)
             HandleMovement();
@@ -234,6 +234,7 @@ public class PlayerCar : HealthEntity
         CheckForModules();
         FinalizeModuleSelection();
         transform.position = respawnPoint.position;
+        transform.rotation = respawnPoint.rotation;
         health = maxHealth;
         deathScreen.SetActive(false);
         greenHealthBar.SetHealth(health);

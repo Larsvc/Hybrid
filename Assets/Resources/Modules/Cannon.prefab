@@ -5540,9 +5540,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7707bf174b5338b48821c1c9522df952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
+  maxHealth: 1000
   hitmarker: {fileID: 0}
-  bulletForce: 60
+  IsDead: 0
+  bulletForce: 150
   bulletPrefab: {fileID: 1075580439290887781, guid: bc9d3fdafe642a94c8e8ac3e890fb50b,
     type: 3}
   fireRate: 1.5

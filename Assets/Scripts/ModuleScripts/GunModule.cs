@@ -73,7 +73,10 @@ public class GunModule : ShootModule
             GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
             if (FirstParent(hit.collider.transform))
             {
-                FirstParent(hit.collider.transform).TakeHit(damage);
+                float dmg = damage;
+                if (FirstParent(hit.collider.transform) is Module)
+                    dmg *= 2;
+                FirstParent(hit.collider.transform).TakeHit(dmg);
             }
             Destroy(hitEffect, 1f);
         }
