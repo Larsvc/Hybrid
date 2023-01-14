@@ -5,6 +5,9 @@ using UnityEngine;
 public class Cargo : HealthEntity
 {
     private bool pickedUp;
+    [HideInInspector] public PlayerCar carriedBy;
+
+    private float slowPercentage = 0.2f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -24,9 +27,26 @@ public class Cargo : HealthEntity
         transform.SetParent(player);
         transform.localPosition = new Vector3(0, 0, -1.5f);
         GetComponent<Collider>().isTrigger = false;
-        GetComponentInChildren<ParticleSystem>().Clear();
-        GetComponentInChildren<ParticleSystem>().Stop();
-        GetComponentInChildren<Light>().intensity = 0;
+        /*GetComponentInChildren<ParticleSystem>().Clear();
+        GetComponentInChildren<ParticleSystem>().Stop();*/
+        /*GetComponentInChildren<Light>().intensity = 0;*/
+        transform.GetChild(0).gameObject.SetActive(!pickup);
+
+        if (pickup)
+        {
+            carriedBy.SetSpeed(carriedBy.baseSpeed * (1f - slowPercentage));
+            GetComponentInChildren<AudioSource>().Play();
+            GetComponentInChildren<ParticleSystem>().Play();
+        }
+        else
+        {
+            if (carriedBy)
+                carriedBy.SetSpeed(carriedBy.baseSpeed);
+
+            carriedBy = null;
+        }
+        
+        GetComponentInChildren<AudioSource>().Play();
         //GetComponent<Rigidbody>().isKinematic = false;
     }
 
@@ -34,6 +54,7 @@ public class Cargo : HealthEntity
     {
         if (other.tag == "Player" && !pickedUp)
         {
+            carriedBy = other.GetComponent<PlayerCar>();
             Pickup(other.transform, true);
         }
     }

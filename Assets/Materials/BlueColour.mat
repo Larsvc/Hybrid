@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedColour
+  m_Name: BlueColour
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 015c268a23edb5f42baf071b4e3ad5df, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1.39, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 015c268a23edb5f42baf071b4e3ad5df, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1.39, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -107,9 +107,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.8980392, g: 0.10300989, b: 0.07843137, a: 1}
-    - _Color: {r: 0.8980392, g: 0.10300984, b: 0.078431346, a: 1}
-    - _EmissionColor: {r: 3.9533494, g: 0.06209438, b: 0.13319324, a: 1}
+    - _BaseColor: {r: 0.07843137, g: 0.6644134, b: 0.8980392, a: 1}
+    - _Color: {r: 0.078431346, g: 0.6644134, b: 0.8980392, a: 1}
+    - _EmissionColor: {r: 0.04139633, g: 0.4760578, b: 3.9533494, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8659325414052723270

@@ -9,9 +9,13 @@ public class PlayerCar : HealthEntity
 {
     [Header("Properties")]
     public float rotateSpeed = 3f;
+    [HideInInspector] public float baseSpeed = 42f;
+    private float currentSpeed;
+    private float moduleSlowModifier = 0.075f;
+
     public float moveSpeed
     {
-        get { return 35f - 32f * 0.1f * moduleSlots.Where(m => m.transform.childCount > 0).ToArray().Length; }
+        get { return currentSpeed - currentSpeed * moduleSlowModifier * moduleSlots.Where(m => m.transform.childCount > 0).ToArray().Length; }
     }
 
     public int playerNumber = 1;
@@ -69,6 +73,7 @@ public class PlayerCar : HealthEntity
         respawnPoint = GameObject.Find($"Player{playerNumber}Spawn").transform;
 
         //LoadModules();
+        currentSpeed = baseSpeed;
 
         CheckForModules();
         FinalizeModuleSelection();
@@ -77,6 +82,11 @@ public class PlayerCar : HealthEntity
 
         greenHealthBar.SetMaxHealth(health);
         redHealthBar.SetMaxHealth(health);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        currentSpeed = speed;
     }
 
     /*private void LoadModules()
@@ -161,7 +171,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Gun", "Gun", "Ram", "SpeedUp" };
+        return new string[] { "Gun", "Gun", "Gun", "Gun" };
     }
 
     // Update is called once per frame
