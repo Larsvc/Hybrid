@@ -179,7 +179,6 @@ public class PlayerCar : HealthEntity
 
         if (Input.GetAxisRaw(ability + playerNumber) != 0)
         {
-            Debug.Log(ability + playerNumber + " is ingedrukt neef");
             ActivateAbilities();
         }
 
