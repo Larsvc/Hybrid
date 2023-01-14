@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 45121787}
   - component: {fileID: 45121789}
   - component: {fileID: 45121788}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 242e768cf1f5b0c41b47744ebc7dbd4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6366,7 +6366,7 @@ GameObject:
   - component: {fileID: 488109171}
   - component: {fileID: 488109170}
   - component: {fileID: 488109175}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cargo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6388,6 +6388,7 @@ MonoBehaviour:
   maxHealth: 1000
   hitmarker: {fileID: 0}
   IsDead: 0
+  carriedBy: {fileID: 0}
 --- !u!65 &488109171
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6459,7 +6460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488109169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.8, y: 0.68, z: 19.91}
+  m_LocalPosition: {x: 8, y: 0.68, z: 19.91}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17395,7 +17396,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 3575
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -17514,7 +17515,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 759
+    m_Bits: 3831
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -18130,7 +18131,7 @@ GameObject:
   - component: {fileID: 908026146}
   - component: {fileID: 908026145}
   - component: {fileID: 908026144}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19844,7 +19845,7 @@ GameObject:
   - component: {fileID: 1548950233}
   - component: {fileID: 1548950232}
   - component: {fileID: 1548950231}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CargoLightBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20615,7 +20616,7 @@ GameObject:
   - component: {fileID: 1646702194}
   - component: {fileID: 1646702193}
   - component: {fileID: 1646702192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SandGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

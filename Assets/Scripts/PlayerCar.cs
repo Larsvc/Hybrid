@@ -171,7 +171,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Gun", "Gun", "Gun", "Gun" };
+        return new string[] { "Gun", "Cannon", "Shield", "SpeedUp" };
     }
 
     // Update is called once per frame

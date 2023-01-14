@@ -239,4 +239,4 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 0
-  damage: 150
+  damage: 95

@@ -19,6 +19,17 @@ public class Cargo : HealthEntity
     protected override void Update()
     {
         base.Update();
+
+        if (carriedBy && !GetComponentInChildren<ParticleSystem>().isEmitting && carriedBy.GetComponent<Rigidbody>().velocity.magnitude > 1)
+        {
+            GetComponent<AudioSource>().Play();
+            GetComponentInChildren<ParticleSystem>().Play();
+        }
+        else if (carriedBy.GetComponent<Rigidbody>().velocity.magnitude < 1)
+        {
+            GetComponent<AudioSource>().Stop();
+            GetComponentInChildren<ParticleSystem>().Stop();
+        }
     }
 
     private void Pickup(Transform player, bool pickup)
@@ -36,7 +47,6 @@ public class Cargo : HealthEntity
         {
             carriedBy.SetSpeed(carriedBy.baseSpeed * (1f - slowPercentage));
             GetComponentInChildren<AudioSource>().Play();
-            GetComponentInChildren<ParticleSystem>().Play();
         }
         else
         {
@@ -44,6 +54,7 @@ public class Cargo : HealthEntity
                 carriedBy.SetSpeed(carriedBy.baseSpeed);
 
             carriedBy = null;
+            GetComponentInChildren<ParticleSystem>().Stop();
         }
         
         GetComponentInChildren<AudioSource>().Play();
