@@ -20,7 +20,7 @@ public class GunModule : ShootModule
         base.Start();
         camShake = player.cam.GetComponent<CameraShake>();
 
-        minigunBarrel = transform.GetChild(0);
+        minigunBarrel = transform.GetChild(1).GetChild(0);
         waitTime = 1f / fireRate;
     }
 
@@ -73,7 +73,7 @@ public class GunModule : ShootModule
         Vector2 spawnPos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 0.3f;
 
         // Transform random position from local to world space
-        Vector3 spawnPoint = transform.TransformPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
+        Vector3 spawnPoint = minigunBarrel.TransformPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 
         Vector3 dir = (aimPoint - spawnPoint).normalized;
         if (hasHit)

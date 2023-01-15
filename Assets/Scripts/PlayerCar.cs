@@ -147,7 +147,7 @@ public class PlayerCar : HealthEntity
         GameObject modulePrefab = Resources.Load<GameObject>("Modules/" + moduleName);
         if (modulePrefab != null)
         {
-            GameObject module = Instantiate(modulePrefab, moduleSlots[slot].position, Quaternion.identity, moduleSlots[slot]);
+            GameObject module = Instantiate(modulePrefab, moduleSlots[slot].position + modulePrefab.GetComponent<Module>().offset, Quaternion.identity, moduleSlots[slot]);
             module.transform.forward = transform.forward;
             //allModules[slot] = module.GetComponent<Module>();
         }
@@ -171,7 +171,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Gun", "Cannon", "Shield", "SpeedUp" };
+        return new string[] { "Minigun", "Launcher", "Booster", "Booster" };
     }
 
     // Update is called once per frame
