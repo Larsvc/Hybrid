@@ -64,6 +64,7 @@ public class CannonModule : ShootModule
 
 
         Rigidbody bullet = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
+        bullet.GetComponent<Projectile>().SetHitMarker(player.hitmarker);
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
         bullet.GetComponent<Projectile>().mask = mask;
 

@@ -19,7 +19,7 @@ public abstract class Module : HealthEntity
     {
         base.Start();
         player = transform.root.GetComponent<PlayerCar>();
-        hitmarker = GameObject.Find("Hitmarker" + player.playerNumber).GetComponent<Animator>();
+        //hitmarker = GameObject.Find("Hitmarker" + player.playerNumber).GetComponent<Animator>();
 
         gameObject.layer = player.gameObject.layer;
         

@@ -7,7 +7,13 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public LayerMask mask;
 
     [SerializeField] private float damage = 60f;
+    private Animator hitmarkerFromPlayer;
     bool dead;
+
+    public void SetHitMarker(Animator h)
+    {
+        hitmarkerFromPlayer = h;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +36,7 @@ public class Projectile : MonoBehaviour
             bool canDamage = FirstParent(collision.collider.transform);
             if (canDamage)
             {
-                FirstParent(collision.collider.transform).TakeHit(damage);
+                FirstParent(collision.collider.transform).TakeHit(damage, hitmarkerFromPlayer);
             }
 
             GameObject explosion = Instantiate(PrefabManager.instance.cannonballExplosion, transform.position, Quaternion.identity);
@@ -48,7 +54,7 @@ public class Projectile : MonoBehaviour
             bool canDamage = FirstParent(col.transform); //TODO: this gets the parent instead of the child itself
             if (canDamage)
             {
-                FirstParent(col.transform).TakeHit(damage);
+                FirstParent(col.transform).TakeHit(damage, hitmarkerFromPlayer);
             }
 
             GameObject explosion = Instantiate(PrefabManager.instance.cannonballExplosion, transform.position, Quaternion.identity);

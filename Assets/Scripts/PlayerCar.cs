@@ -20,6 +20,7 @@ public class PlayerCar : HealthEntity
 
     public int playerNumber = 1;
 
+    public Animator hitmarker;
     [SerializeField] private AudioClip hitSound;
 
     private Rigidbody rb;
@@ -260,11 +261,11 @@ public class PlayerCar : HealthEntity
         respawnTimer = respawnTime;
     }
 
-    public override void TakeHit(float damage)
+    public override void TakeHit(float damage,  Animator hitmarker)
     {
         if (!IsDead)
         {
-            base.TakeHit(damage);
+            base.TakeHit(damage, hitmarker);
             audioSource.PlayOneShot(hitSound);
             greenHealthBar.SetHealth(health);
             redHealthBar.SetHealth(health);
@@ -276,7 +277,7 @@ public class PlayerCar : HealthEntity
         foreach(Transform slot in moduleSlots)
         {
             if (slot.childCount > 0)
-                slot.GetChild(0).GetComponent<Module>().TakeHit(10000);
+                slot.GetChild(0).GetComponent<Module>().TakeHit(10000, hitmarker);
         }
 
         deathScreen.SetActive(true);

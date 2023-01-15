@@ -32,7 +32,7 @@ public class ShieldModule : AbilityModule
         base.Die();
     }
 
-    public override void TakeHit(float damage)
+    public override void TakeHit(float damage, Animator hitmarker)
     {
         hitmarker.SetTrigger("hit");
         if (!active)

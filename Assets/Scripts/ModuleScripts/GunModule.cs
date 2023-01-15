@@ -89,7 +89,7 @@ public class GunModule : ShootModule
                 float dmg = damage;
                 if (FirstParent(hit.collider.transform) is Module)
                     dmg *= 2;
-                FirstParent(hit.collider.transform).TakeHit(dmg);
+                FirstParent(hit.collider.transform).TakeHit(dmg, player.hitmarker);
             }
             Destroy(hitEffect, 1f);
         }

@@ -6,7 +6,7 @@ public abstract class HealthEntity : MonoBehaviour
 {
     [SerializeField] protected float maxHealth = 1000;
     protected float health;
-    [SerializeField] protected Animator hitmarker;
+    //[SerializeField] protected Animator hitmarker;
     protected Animator animator;
 
     public bool IsDead;
@@ -28,8 +28,9 @@ public abstract class HealthEntity : MonoBehaviour
         }
     }
 
-    public virtual void TakeHit(float damage)
+    public virtual void TakeHit(float damage, Animator hitmarker)
     {
+        Debug.Log("dikke tering hitmarker is " + hitmarker.name);
         hitmarker.SetTrigger("hit");
         health -= damage;
         animator.SetTrigger("hit");
