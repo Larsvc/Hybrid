@@ -89,6 +89,11 @@ public class PlayerCar : HealthEntity
         currentSpeed = speed;
     }
 
+    public void SetMass(float mass)
+    {
+        rb.mass = mass;
+    }
+
     /*private void LoadModules()
     {
         //TODO: selectedModules = read from chips
