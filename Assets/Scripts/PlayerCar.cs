@@ -230,7 +230,7 @@ public class PlayerCar : HealthEntity
 
         animator.SetFloat("speed", rb.velocity.magnitude);
 
-        if (transform.position.y < -1.2f)
+        if (transform.position.y < -2f)
             Die();
     }
 
