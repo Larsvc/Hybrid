@@ -25,7 +25,7 @@ public class Cargo : HealthEntity
             GetComponent<AudioSource>().Play();
             GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (carriedBy.GetComponent<Rigidbody>().velocity.magnitude < 1)
+        else if (carriedBy && carriedBy.GetComponent<Rigidbody>().velocity.magnitude < 1)
         {
             GetComponent<AudioSource>().Stop();
             GetComponentInChildren<ParticleSystem>().Stop();

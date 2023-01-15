@@ -25,6 +25,7 @@ public class CapturePoint : MonoBehaviour
             //ScoreManager.AddScore(playerNumber);
             //Destroy(other.gameObject);
             GameManager.instance.AddPoint(playerNumber);
+            Debug.Log("yoo ik score voor " + playerNumber);
             DoVisuals(other);
         }
     }
