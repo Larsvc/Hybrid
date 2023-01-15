@@ -9193,7 +9193,9 @@ MonoBehaviour:
   cargoPrefab: {fileID: 4463953145964052549, guid: 2f113f381aaed844d8672fdfb16f623c,
     type: 3}
   captureText: {fileID: 962776750}
-  bestOf: 5
+  maxScore: 3
+  p1WinScreen: {fileID: 1173085576}
+  p2WinScreen: {fileID: 1108289952}
 --- !u!1 &588273248
 GameObject:
   m_ObjectHideFlags: 0
