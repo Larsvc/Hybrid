@@ -395,7 +395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   bulletForce: 100
   bulletPrefab: {fileID: 3667592480458627293, guid: 75fb051c5ae1f6d4ead72d1e087bd647,
@@ -620,10 +619,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 25
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
   respawnTime: 5
@@ -1409,10 +1409,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 1832407932}
   IsDead: 0
   rotateSpeed: 2.5
+  baseSpeed: 42
   playerNumber: 2
+  hitmarker: {fileID: 1832407932}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 1974652112}
   respawnTime: 5
@@ -1870,10 +1871,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 25
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
   respawnTime: 5
@@ -7597,10 +7599,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 1705175238}
   IsDead: 0
   rotateSpeed: 2.5
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 1705175238}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 763739248}
   respawnTime: 5
@@ -8549,10 +8552,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 2
+  baseSpeed: 42
   playerNumber: 0
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
   respawnTime: 5
@@ -14770,10 +14774,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 25
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
   respawnTime: 5
@@ -21067,10 +21072,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 25
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
   respawnTime: 5
@@ -22604,7 +22610,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   bulletForce: 100
   bulletPrefab: {fileID: 3667592480458627293, guid: 75fb051c5ae1f6d4ead72d1e087bd647,
@@ -33507,7 +33512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   bulletForce: 100
   bulletPrefab: {fileID: 3667592480458627293, guid: 75fb051c5ae1f6d4ead72d1e087bd647,
@@ -34085,7 +34089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   bulletForce: 100
   bulletPrefab: {fileID: 3667592480458627293, guid: 75fb051c5ae1f6d4ead72d1e087bd647,
@@ -34907,10 +34910,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 25
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 0}
   cam: {fileID: 0}
   respawnTime: 5
@@ -40613,10 +40617,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
   rotateSpeed: 25
+  baseSpeed: 42
   playerNumber: 1
+  hitmarker: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
   cam: {fileID: 0}
   respawnTime: 5
