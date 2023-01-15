@@ -15042,15 +15042,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
-  hitmarker: {fileID: 1121779086}
+  hitmarker: {fileID: 2129985764}
   IsDead: 0
   rotateSpeed: 2.5
   baseSpeed: 42
   playerNumber: 2
   hitSound: {fileID: 8300000, guid: ac914f4eda5b08f4bbce1929346ccf76, type: 3}
-  cam: {fileID: 720051134}
+  cam: {fileID: 701649968}
   respawnTime: 5
-  deathScreen: {fileID: 2063537953}
+  deathScreen: {fileID: 513903855}
   moduleSlots:
   - {fileID: 1575685047}
   - {fileID: 2033561003}
@@ -19245,7 +19245,7 @@ PrefabInstance:
     - target: {fileID: 4463953145964052546, guid: 2f113f381aaed844d8672fdfb16f623c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 39.4
       objectReference: {fileID: 0}
     - target: {fileID: 4463953145964052546, guid: 2f113f381aaed844d8672fdfb16f623c,
         type: 3}
