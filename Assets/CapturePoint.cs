@@ -32,6 +32,7 @@ public class CapturePoint : MonoBehaviour
 
     private void DoVisuals(Collider other)
     {
+        other.GetComponentInChildren<AudioSource>().Stop();
         GetComponent<AudioSource>().Play();
         Destroy(other.GetComponent<Collider>());
         Destroy(other.GetComponentInChildren<ParticleSystem>());

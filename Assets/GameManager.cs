@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private GameObject currentCargo;
     [SerializeField] private Transform cargoSpawnPoint;
     [SerializeField] private GameObject cargoPrefab;
+    [SerializeField] private TextMeshProUGUI captureText;
 
     void Start()
     {
@@ -37,8 +38,6 @@ public class GameManager : MonoBehaviour
     {
         scoreTexts[0].text = scores[0].ToString();
         scoreTexts[1].text = scores[1].ToString();
-
-        Debug.Log("Yoo scoretexts 0 is " + scoreTexts[0].text);
     }
 
     private void CheckCargo()
@@ -49,6 +48,9 @@ public class GameManager : MonoBehaviour
 
     public void AddPoint(int player)
     {
-        scores[player]++;
+        scores[player-1]++;
+        captureText.GetComponent<Animator>().SetTrigger("capture");
+        captureText.GetComponent<AudioSource>().Play();
+        captureText.text = "Player " + player + " captured the cargo!";
     }
 }

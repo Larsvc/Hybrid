@@ -36,7 +36,7 @@ public class Cargo : HealthEntity
     {
         pickedUp = pickup;
         transform.SetParent(player);
-        transform.localPosition = new Vector3(0, 0, -1.5f);
+        transform.localPosition = new Vector3(0, 0, -5f);
         GetComponent<Collider>().isTrigger = false;
         /*GetComponentInChildren<ParticleSystem>().Clear();
         GetComponentInChildren<ParticleSystem>().Stop();*/
@@ -63,10 +63,10 @@ public class Cargo : HealthEntity
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !pickedUp)
+        if (other.transform.root.tag == "Player" && !pickedUp)
         {
-            carriedBy = other.GetComponent<PlayerCar>();
-            Pickup(other.transform, true);
+            carriedBy = other.transform.root.GetComponent<PlayerCar>();
+            Pickup(other.transform.root, true);
         }
     }
 
