@@ -231,6 +231,16 @@ public class PlayerCar : HealthEntity
         animator.SetFloat("speed", rb.velocity.magnitude);
     }
 
+    public float GetHor()
+    {
+        return hor;
+    }
+
+    public float GetVert()
+    {
+        return vert;
+    }
+
     private void SetShootTrigger()
     {
         foreach(ShootModule gun in gunModules)
