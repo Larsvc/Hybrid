@@ -215,7 +215,7 @@ public class PlayerCar : HealthEntity
     private void FixedUpdate()
     {
         //rb.AddTorque(transform.up * hor * rotateSpeed);
-        rb.MoveRotation(Quaternion.Euler(transform.up * hor * rotateSpeed) * transform.rotation);
+        rb.MoveRotation(Quaternion.Euler(Vector3.up * hor * rotateSpeed) * transform.rotation);
         //transform.position += transform.forward * vert * moveSpeed * Time.deltaTime;
         rb.AddForce(transform.forward * vert * moveSpeed, ForceMode.Acceleration);
     }
@@ -229,16 +229,9 @@ public class PlayerCar : HealthEntity
         audioSource.pitch = Mathf.Lerp(0.6f, 1f, rb.velocity.magnitude / (moveSpeed / 4));
 
         animator.SetFloat("speed", rb.velocity.magnitude);
-    }
 
-    public float GetHor()
-    {
-        return hor;
-    }
-
-    public float GetVert()
-    {
-        return vert;
+        if (transform.position.y < -1.2f)
+            Die();
     }
 
     private void SetShootTrigger()

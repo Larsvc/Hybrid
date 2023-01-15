@@ -60,7 +60,7 @@ public class MouseOrbit : MonoBehaviour
         foreach (ShootModule g in target.gunModules)
         {
             Transform m = g.transform;
-            m.eulerAngles = new Vector3(m.eulerAngles.x, transform.eulerAngles.y, m.eulerAngles.z);
+            m.localEulerAngles = new Vector3(m.localEulerAngles.x, transform.eulerAngles.y - 90f, m.localEulerAngles.z);
         }
     }
 
@@ -70,7 +70,7 @@ public class MouseOrbit : MonoBehaviour
 
         if (target)
         {
-            x += (Input.GetAxis(lookHorizontal) + target.GetHor()) * xSpeed * lookModifier * Time.deltaTime ;
+            x += Input.GetAxis(lookHorizontal) * xSpeed * lookModifier * Time.deltaTime;
             y -= Input.GetAxis(lookVertical) * ySpeed * lookModifier * Time.deltaTime;
             /*else if (isMoving || Input.GetMouseButton(1))
               {
