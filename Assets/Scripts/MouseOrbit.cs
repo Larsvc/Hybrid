@@ -60,7 +60,7 @@ public class MouseOrbit : MonoBehaviour
         foreach (ShootModule g in target.gunModules)
         {
             Transform m = g.transform;
-            m.localEulerAngles = new Vector3(m.localEulerAngles.x, transform.eulerAngles.y - 90f, m.localEulerAngles.z);
+            m.eulerAngles = new Vector3(m.eulerAngles.x, transform.eulerAngles.y, m.eulerAngles.z);
         }
     }
 

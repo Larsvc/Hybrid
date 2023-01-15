@@ -30,14 +30,23 @@ public class Cargo : HealthEntity
             GetComponent<AudioSource>().Stop();
             GetComponentInChildren<ParticleSystem>().Stop();
         }
+
+        if (carriedBy && carriedBy.IsDead)
+            Pickup(null, false);
+
+        if (transform.position.y < -2f)
+            Die();
     }
 
     private void Pickup(Transform player, bool pickup)
     {
         pickedUp = pickup;
         transform.SetParent(player);
-        transform.localPosition = new Vector3(0, 2, -5f);
-        GetComponent<Collider>().isTrigger = false;
+
+        if (pickup)
+            transform.localPosition = new Vector3(0, 0, -5f);
+
+        //GetComponent<Collider>().isTrigger = !pickup;
         /*GetComponentInChildren<ParticleSystem>().Clear();
         GetComponentInChildren<ParticleSystem>().Stop();*/
         /*GetComponentInChildren<Light>().intensity = 0;*/
@@ -56,7 +65,7 @@ public class Cargo : HealthEntity
             carriedBy = null;
             GetComponentInChildren<ParticleSystem>().Stop();
         }
-        
+
         GetComponentInChildren<AudioSource>().Play();
         //GetComponent<Rigidbody>().isKinematic = false;
     }
