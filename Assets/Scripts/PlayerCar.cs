@@ -212,6 +212,12 @@ public class PlayerCar : HealthEntity
             Respawn();
     }
 
+    protected void LateUpdate()
+    {
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+    }
+
+
     private void FixedUpdate()
     {
         //rb.AddTorque(transform.up * hor * rotateSpeed);
