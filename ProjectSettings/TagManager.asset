@@ -15,8 +15,8 @@ TagManager:
   - PlayerLayer2
   - ExcludeCam1
   - ExcludeCam2
-  - 
-  - 
+  - LayerOutlined
+  - NoOutline
   - 
   - 
   - 

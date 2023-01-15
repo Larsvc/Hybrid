@@ -11,6 +11,9 @@ public class GunModule : ShootModule
     private float minigunRotationSpeed = 1000f;
     private int bulletCount;
 
+    private float nextFire;
+    private float waitTime;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -18,6 +21,7 @@ public class GunModule : ShootModule
         camShake = player.cam.GetComponent<CameraShake>();
 
         minigunBarrel = transform.GetChild(0);
+        waitTime = 1f / fireRate;
     }
 
     // Update is called once per frame
@@ -33,6 +37,15 @@ public class GunModule : ShootModule
 
         if (chargeAmount > 0)
             chargeAmount -= 1f * Time.deltaTime;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.time > nextFire && !canShoot)
+        {
+            canShoot = true;
+            nextFire = Time.time + waitTime;
+        }
     }
 
     public override void Fire()
@@ -73,7 +86,10 @@ public class GunModule : ShootModule
             GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
             if (FirstParent(hit.collider.transform))
             {
-                FirstParent(hit.collider.transform).TakeHit(damage);
+                float dmg = damage;
+                if (FirstParent(hit.collider.transform) is Module)
+                    dmg *= 2;
+                FirstParent(hit.collider.transform).TakeHit(dmg);
             }
             Destroy(hitEffect, 1f);
         }
@@ -92,8 +108,6 @@ public class GunModule : ShootModule
         canShoot = false;
 
         bulletCount  = (bulletCount + 1) % 10;
-
-       StartCoroutine(WaitForFireRate());
     }
 
     private HealthEntity FirstParent(Transform t)
@@ -106,9 +120,9 @@ public class GunModule : ShootModule
             return null;
     }
 
-    IEnumerator WaitForFireRate()
+    /*IEnumerator WaitForFireRate()
     {
         yield return new WaitForSeconds(1 / fireRate);
         canShoot = true;
-    }
+    }*/
 }

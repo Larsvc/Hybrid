@@ -9,10 +9,8 @@ public abstract class HealthEntity : MonoBehaviour
     [SerializeField] protected Animator hitmarker;
     protected Animator animator;
 
-    public bool IsDead
-    {
-        get { return health > 0; }
-    }
+    public bool IsDead;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -23,9 +21,10 @@ public abstract class HealthEntity : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (health <= 0)
+        if (health <= 0 && !IsDead)
         {
             Die();
+            IsDead = true;
         }
     }
 

@@ -7,9 +7,19 @@ using UnityEngine;
 
 public class PlayerCar : HealthEntity
 {
+    [Header("Properties")]
     public float rotateSpeed = 3f;
-    public float moveSpeed = 16f;
-    
+    [HideInInspector] public float baseSpeed = 42f;
+    private float currentSpeed;
+    private float moduleSlowModifier = 0.075f;
+
+    public float moveSpeed
+    {
+        get { return currentSpeed - currentSpeed * moduleSlowModifier * moduleSlots.Where(m => m.transform.childCount > 0).ToArray().Length; }
+    }
+
+    public int playerNumber = 1;
+
     [SerializeField] private AudioClip hitSound;
 
     private Rigidbody rb;
@@ -17,19 +27,17 @@ public class PlayerCar : HealthEntity
 
     public Camera cam;
 
-    public HealthBar greenHealthBar;
-    public HealthBar redHealthBar;
+    private HealthBar greenHealthBar;
+    private HealthBar redHealthBar;
 
+    [Header("Respawn")]
     public float respawnTime = 5f;
     public GameObject deathScreen;
-    public Transform respawnPoint;
-    private bool dead = false;
-    private float respawnTimer;
+    private Transform respawnPoint;
+    private float respawnTimer = 5f;
 
     private float hor;
     private float vert;
-
-    public int playerNumber = 1;
 
     private const string horizontalControls = "MoveHorizontalP";
     private const string verticalControls = "MoveVerticalP";
@@ -45,7 +53,7 @@ public class PlayerCar : HealthEntity
     [SerializeField] private Transform[] moduleSlots;
     [SerializeField] private string[] selectedModules;
 
-    private List<ShootModule> gunModules = new List<ShootModule>();
+    [HideInInspector]public List<ShootModule> gunModules = new List<ShootModule>();
     private List<AbilityModule> abilityModules = new List<AbilityModule>();
     #endregion
 
@@ -60,19 +68,25 @@ public class PlayerCar : HealthEntity
         audioSource = GetComponent<AudioSource>();
         normalVolume = audioSource.volume;
 
-        
-
         healthText = GetComponentInChildren<TextMeshPro>();
+        greenHealthBar = GameObject.Find("HealthBar" + playerNumber).GetComponent<HealthBar>();
+        respawnPoint = GameObject.Find($"Player{playerNumber}Spawn").transform;
 
         //LoadModules();
+        currentSpeed = baseSpeed;
 
         CheckForModules();
         FinalizeModuleSelection();
-        gunModules = transform.Find("Modules").GetComponentsInChildren<ShootModule>().ToList();
-        abilityModules = transform.Find("Modules").GetComponentsInChildren<AbilityModule>().ToList();
+
+        redHealthBar = GetComponentInChildren<HealthBar>();
 
         greenHealthBar.SetMaxHealth(health);
         redHealthBar.SetMaxHealth(health);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        currentSpeed = speed;
     }
 
     /*private void LoadModules()
@@ -107,7 +121,8 @@ public class PlayerCar : HealthEntity
 
     private void CheckForModules()
     {
-        selectedModules = ReadModulesFromChips();
+        if (!IsDead)
+            selectedModules = ReadModulesFromChips();
 
         for (int i = 0; i < moduleSlots.Length; i++)
         {
@@ -156,7 +171,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Gun", "Gun" };
+        return new string[] { "Gun", "Cannon", "Shield", "SpeedUp" };
     }
 
     // Update is called once per frame
@@ -164,27 +179,30 @@ public class PlayerCar : HealthEntity
     {
         base.Update();
 
-        healthText.text = "Health: " + health;
+        healthText.text = "Health: " + Mathf.CeilToInt(health);
 
-        HandleMovement();
+        if (!IsDead)
+            HandleMovement();
 
         if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
             SetShootTrigger();
 
         if (Input.GetAxisRaw(ability + playerNumber) != 0)
+        {
             ActivateAbilities();
+        }
 
         if (pickingModules)
             CheckForModules();
 
-        if (dead)
+        if (IsDead)
         {
-            respawnTime -= Time.deltaTime;
-            deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTime) + " seconds.";
+            respawnTimer -= Time.deltaTime;
+            deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
         }
             
 
-        if (respawnTime <= 0)
+        if (respawnTimer <= 0)
             Respawn();
     }
 
@@ -224,18 +242,28 @@ public class PlayerCar : HealthEntity
     }
 
     private void Respawn()
-    {
+    {        
+        CheckForModules();
+        FinalizeModuleSelection();
         transform.position = respawnPoint.position;
+        transform.rotation = respawnPoint.rotation;
         health = maxHealth;
         deathScreen.SetActive(false);
+        greenHealthBar.SetHealth(health);
+        redHealthBar.SetHealth(health);
+        IsDead = false;
+        respawnTimer = respawnTime;
     }
 
     public override void TakeHit(float damage)
     {
-        base.TakeHit(damage);
-        audioSource.PlayOneShot(hitSound);
-        greenHealthBar.SetHealth(health);
-        redHealthBar.SetHealth(health);
+        if (!IsDead)
+        {
+            base.TakeHit(damage);
+            audioSource.PlayOneShot(hitSound);
+            greenHealthBar.SetHealth(health);
+            redHealthBar.SetHealth(health);
+        }
     }
 
     protected override void Die()
@@ -245,10 +273,8 @@ public class PlayerCar : HealthEntity
             if (slot.childCount > 0)
                 slot.GetChild(0).GetComponent<Module>().TakeHit(10000);
         }
-        Destroy(gameObject);
 
-        respawnTimer = respawnTime;
         deathScreen.SetActive(true);
-        dead = true;
+        IsDead = true;
     }
 }
