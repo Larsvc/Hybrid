@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
             bool canDamage = FirstParent(collision.collider.transform);
             if (canDamage)
             {
-                FirstParent(collision.transform).TakeHit(damage);
+                FirstParent(collision.collider.transform).TakeHit(damage);
             }
 
             GameObject explosion = Instantiate(PrefabManager.instance.cannonballExplosion, transform.position, Quaternion.identity);

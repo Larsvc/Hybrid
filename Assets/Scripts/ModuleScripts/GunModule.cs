@@ -11,13 +11,17 @@ public class GunModule : ShootModule
     private float minigunRotationSpeed = 1000f;
     private int bulletCount;
 
+    private float nextFire;
+    private float waitTime;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         camShake = player.cam.GetComponent<CameraShake>();
 
-        minigunBarrel = transform.GetChild(0);
+        minigunBarrel = transform.GetChild(1).GetChild(0);
+        waitTime = 1f / fireRate;
     }
 
     // Update is called once per frame
@@ -33,6 +37,15 @@ public class GunModule : ShootModule
 
         if (chargeAmount > 0)
             chargeAmount -= 1f * Time.deltaTime;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.time > nextFire && !canShoot)
+        {
+            canShoot = true;
+            nextFire = Time.time + waitTime;
+        }
     }
 
     public override void Fire()
@@ -60,7 +73,7 @@ public class GunModule : ShootModule
         Vector2 spawnPos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 0.3f;
 
         // Transform random position from local to world space
-        Vector3 spawnPoint = transform.TransformPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
+        Vector3 spawnPoint = minigunBarrel.TransformPoint(new Vector3(spawnPos.x, spawnPos.y, 0f));
 
         Vector3 dir = (aimPoint - spawnPoint).normalized;
         if (hasHit)
@@ -95,8 +108,6 @@ public class GunModule : ShootModule
         canShoot = false;
 
         bulletCount  = (bulletCount + 1) % 10;
-
-       StartCoroutine(WaitForFireRate());
     }
 
     private HealthEntity FirstParent(Transform t)
@@ -109,9 +120,9 @@ public class GunModule : ShootModule
             return null;
     }
 
-    IEnumerator WaitForFireRate()
+    /*IEnumerator WaitForFireRate()
     {
         yield return new WaitForSeconds(1 / fireRate);
         canShoot = true;
-    }
+    }*/
 }

@@ -5546,6 +5546,6 @@ MonoBehaviour:
   bulletForce: 150
   bulletPrefab: {fileID: 1075580439290887781, guid: bc9d3fdafe642a94c8e8ac3e890fb50b,
     type: 3}
-  fireRate: 1.5
+  fireRate: 0.8
   damage: 6
   cannonShot: {fileID: 8300000, guid: 6fcd87219f7e78349982a0e684fee0f5, type: 3}

@@ -6,6 +6,14 @@ public abstract class Module : HealthEntity
 {
     protected PlayerCar player;
 
+    public Vector3 offset
+    {
+        get
+        {
+            return transform.position - transform.GetChild(0).position;
+        }
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -14,8 +22,20 @@ public abstract class Module : HealthEntity
         hitmarker = GameObject.Find("Hitmarker" + player.playerNumber).GetComponent<Animator>();
 
         gameObject.layer = player.gameObject.layer;
-        foreach (Transform child in transform)
+        
+        SetCorrectLayer(transform);
+    }
+
+    private void SetCorrectLayer(Transform t)
+    {
+        if (t.childCount == 0)
+            return;
+
+        foreach (Transform child in t)
+        {
             child.gameObject.layer = player.gameObject.layer;
+            SetCorrectLayer(child);
+        }
     }
 
     // Update is called once per frame

@@ -170,7 +170,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: e
+    positiveButton: f
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -733,14 +733,14 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1
+    gravity: 0
     dead: 0.19
     sensitivity: 1
     snap: 0
     invert: 1
     type: 2
     axis: 4
-    joyNum: 16
+    joyNum: 2
   - serializedVersion: 3
     m_Name: Debug Vertical
     descriptiveName: 

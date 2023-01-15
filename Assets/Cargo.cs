@@ -5,6 +5,9 @@ using UnityEngine;
 public class Cargo : HealthEntity
 {
     private bool pickedUp;
+    [HideInInspector] public PlayerCar carriedBy;
+
+    private float slowPercentage = 0.2f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -16,25 +19,54 @@ public class Cargo : HealthEntity
     protected override void Update()
     {
         base.Update();
+
+        if (carriedBy && !GetComponentInChildren<ParticleSystem>().isEmitting && carriedBy.GetComponent<Rigidbody>().velocity.magnitude > 1)
+        {
+            GetComponent<AudioSource>().Play();
+            GetComponentInChildren<ParticleSystem>().Play();
+        }
+        else if (carriedBy && carriedBy.GetComponent<Rigidbody>().velocity.magnitude < 1)
+        {
+            GetComponent<AudioSource>().Stop();
+            GetComponentInChildren<ParticleSystem>().Stop();
+        }
     }
 
     private void Pickup(Transform player, bool pickup)
     {
         pickedUp = pickup;
         transform.SetParent(player);
-        transform.localPosition = new Vector3(0, 0, -1.5f);
+        transform.localPosition = new Vector3(0, 0, -5f);
         GetComponent<Collider>().isTrigger = false;
-        GetComponentInChildren<ParticleSystem>().Clear();
-        GetComponentInChildren<ParticleSystem>().Stop();
-        GetComponentInChildren<Light>().intensity = 0;
+        /*GetComponentInChildren<ParticleSystem>().Clear();
+        GetComponentInChildren<ParticleSystem>().Stop();*/
+        /*GetComponentInChildren<Light>().intensity = 0;*/
+        transform.GetChild(0).gameObject.SetActive(!pickup);
+
+        if (pickup)
+        {
+            carriedBy.SetSpeed(carriedBy.baseSpeed * (1f - slowPercentage));
+            GetComponentInChildren<AudioSource>().Play();
+        }
+        else
+        {
+            if (carriedBy)
+                carriedBy.SetSpeed(carriedBy.baseSpeed);
+
+            carriedBy = null;
+            GetComponentInChildren<ParticleSystem>().Stop();
+        }
+        
+        GetComponentInChildren<AudioSource>().Play();
         //GetComponent<Rigidbody>().isKinematic = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !pickedUp)
+        if (other.transform.root.tag == "Player" && !pickedUp)
         {
-            Pickup(other.transform, true);
+            carriedBy = other.transform.root.GetComponent<PlayerCar>();
+            Pickup(other.transform.root, true);
         }
     }
 

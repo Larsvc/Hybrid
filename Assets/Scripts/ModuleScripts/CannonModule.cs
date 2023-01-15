@@ -31,6 +31,7 @@ public class CannonModule : ShootModule
         transform.GetComponentInChildren<ParticleSystem>().Play();
 
         audioSource.PlayOneShot(cannonShot);
+        animator.SetTrigger("shoot");
 
         int mask = 1 << gameObject.layer;
         mask = ~mask;
