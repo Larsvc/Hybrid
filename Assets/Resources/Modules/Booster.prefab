@@ -168,8 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 250
   IsDead: 0
-  forceModifier: 0.25
-  spedUpTime: 4
+  forceModifier: 0.1
+  spedUpTime: 3
 --- !u!1 &5634371990911918844
 GameObject:
   m_ObjectHideFlags: 0
