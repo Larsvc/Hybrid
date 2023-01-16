@@ -180,7 +180,7 @@ public class PlayerCar : HealthEntity
         //return selectedModules;
 
         //0 = front, 1 = top 1, 3 = top 2, 2 = back;
-        return new string[] { "Ram", "Minigun", "Booster", "Launcher" };
+        return new string[] { "Ram", "Minigun", "Booster", "Shield" };
     }
 
     // Update is called once per frame
@@ -229,8 +229,9 @@ public class PlayerCar : HealthEntity
         hor = Input.GetAxisRaw(horizontalControls + playerNumber);
         vert = Input.GetAxisRaw(verticalControls + playerNumber);
 
-        audioSource.volume = Mathf.Lerp(0, normalVolume, rb.velocity.magnitude / (moveSpeed / 4));
-        audioSource.pitch = Mathf.Lerp(0.6f, 1f, rb.velocity.magnitude / (moveSpeed / 4));
+        float horizontalSpeed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+        audioSource.volume = Mathf.Lerp(0, normalVolume, horizontalSpeed / 4);
+        audioSource.pitch = Mathf.Lerp(0.6f, 1.5f, horizontalSpeed / 20f);
 
         animator.SetFloat("speed", rb.velocity.magnitude);
 

@@ -7,6 +7,7 @@ public class ShieldModule : AbilityModule
 
     bool active = false;
     public float shieldTime = 3.5f;
+    [SerializeField] private Transform shield;
 
     protected override float Cooldown
     {
@@ -15,7 +16,7 @@ public class ShieldModule : AbilityModule
 
     protected override void doAbility()
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        shield.gameObject.SetActive(true);
         active = true;
         StartCoroutine(WaitForShieldEnd());
     }
@@ -23,7 +24,7 @@ public class ShieldModule : AbilityModule
     IEnumerator WaitForShieldEnd()
     {
         yield return new WaitForSeconds(shieldTime);
-        transform.GetChild(0).gameObject.SetActive(false);
+        shield.gameObject.SetActive(false);
         active = false;
     }
 

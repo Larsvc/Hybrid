@@ -130,6 +130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2738219578726700183}
+  - {fileID: 7218192364683113981}
   m_Father: {fileID: 7180588057325684802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -223,12 +224,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7218192364683113982}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.102, z: 1.412}
+  m_LocalPosition: {x: 0, y: 0.79610395, z: 1.4121037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7180588057325684802}
-  m_RootOrder: 2
+  m_Father: {fileID: 3680238336391554080}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7218192364683113955
 ParticleSystem:
@@ -5050,7 +5051,6 @@ Transform:
   m_Children:
   - {fileID: 6069237059175261465}
   - {fileID: 3680238336391554080}
-  - {fileID: 7218192364683113981}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5067,7 +5067,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 250
-  hitmarker: {fileID: 0}
   IsDead: 0
   bulletForce: 250
   bulletPrefab: {fileID: 3667592480458627293, guid: 75fb051c5ae1f6d4ead72d1e087bd647,
