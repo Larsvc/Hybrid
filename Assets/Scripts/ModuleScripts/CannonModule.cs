@@ -9,6 +9,8 @@ public class CannonModule : ShootModule
     [SerializeField] private AudioClip cannonShot;
     private AudioSource audioSource;
 
+    [SerializeField] private Transform barrel;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -44,7 +46,7 @@ public class CannonModule : ShootModule
         player.GetComponent<Rigidbody>().AddForce(-transform.forward * 120f);
 
         // Transform random position from local to world space
-        Vector3 spawnPoint = transform.position + transform.forward * 3f;
+        Vector3 spawnPoint = barrel.position + barrel.forward * 3f;
 
         Vector3 dir = (aimPoint - spawnPoint).normalized;
         if (hasHit)
