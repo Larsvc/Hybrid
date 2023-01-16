@@ -18,18 +18,30 @@ public class CarControllerPlaceholder : MonoBehaviour
     private float rotationValue;
     private Vector3 wheelModelRotation = new Vector3(1, 0, 0);
 
-    void Update()
+    private PlayerCar player;
+
+    private void Awake()
     {
-        // Get input values for steering and motor/brake torque
-        currentSteerAngle = maxSteerAngle * Input.GetAxis("MoveHorizontalP1");
-        currentMotorTorque = motorTorque * Input.GetAxis("MoveVerticalP1");
-        currentBrakeTorque = brakeTorque * Input.GetAxis("AbilityP1");
+        player = GetComponent<PlayerCar>();
 
         frontLeftWheelModel = frontLeftWheel.transform.GetChild(0);
         frontRightWheelModel = frontRightWheel.transform.GetChild(0);
 
         rearLeftWheelModel = rearLeftWheel.transform.GetChild(0);
         rearRightWheelModel = rearRightWheel.transform.GetChild(0);
+    }
+
+    void Update()
+    {
+        if (!player.IsDead)
+            HandleInput();
+    }
+
+    void HandleInput()
+    {
+        currentSteerAngle = maxSteerAngle * Input.GetAxis("MoveHorizontalP1");
+        currentMotorTorque = motorTorque * Input.GetAxis("MoveVerticalP1");
+        currentBrakeTorque = brakeTorque * Input.GetAxis("AbilityP1");
     }
 
     void FixedUpdate()

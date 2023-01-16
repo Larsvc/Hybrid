@@ -193,9 +193,6 @@ public class PlayerCar : HealthEntity
 
         if (!pickingModules)
         {
-            if (!IsDead)
-                HandleMovement();
-
             if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
                 SetShootTrigger();
 
