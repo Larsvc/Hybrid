@@ -50,8 +50,10 @@ public class CarControllerPlaceholder : MonoBehaviour
 
         rotationValue = frontLeftWheel.rpm * (360 / 60) * Time.deltaTime;
         frontLeftWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
+        //frontLeftWheelModel.transform.Rotate(new Vector3(1, 0, 0) * currentSteerAngle * 0.1f);
         rotationValue = frontRightWheel.rpm * (360 / 60) * Time.deltaTime;
         frontRightWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
+        //frontRightWheelModel.transform.Rotate(new Vector3(1, 0, 0) * currentSteerAngle * 0.1f);
         rotationValue = rearLeftWheel.rpm * (360 / 60) * Time.deltaTime;
         rearLeftWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
         rotationValue = rearRightWheel.rpm * (360 / 60) * Time.deltaTime;

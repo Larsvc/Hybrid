@@ -5541,9 +5541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  hitmarker: {fileID: 0}
   IsDead: 0
-  bulletForce: 150
+  bulletForce: 90
   bulletPrefab: {fileID: 1075580439290887781, guid: bc9d3fdafe642a94c8e8ac3e890fb50b,
     type: 3}
   fireRate: 0.8

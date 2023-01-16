@@ -46,7 +46,7 @@ public class Cargo : HealthEntity
         if (pickup)
             transform.localPosition = new Vector3(0, 0, -5f);
 
-        GetComponent<Collider>().isTrigger = !pickup;
+        //GetComponent<Collider>().isTrigger = !pickup;
         /*GetComponentInChildren<ParticleSystem>().Clear();
         GetComponentInChildren<ParticleSystem>().Stop();*/
         /*GetComponentInChildren<Light>().intensity = 0;*/
