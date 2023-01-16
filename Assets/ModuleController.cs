@@ -59,7 +59,7 @@ public class ModuleController : MonoBehaviour
             case 33:
                 return "Shield";
             case 34:
-                return "Boost";
+                return "Booster";
             case 35:
                 return "Launcher";
             case 36:

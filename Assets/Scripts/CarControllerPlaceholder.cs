@@ -39,9 +39,9 @@ public class CarControllerPlaceholder : MonoBehaviour
 
     void HandleInput()
     {
-        currentSteerAngle = maxSteerAngle * Input.GetAxis("MoveHorizontalP1");
-        currentMotorTorque = motorTorque * Input.GetAxis("MoveVerticalP1");
-        currentBrakeTorque = brakeTorque * Input.GetAxis("AbilityP1");
+        currentSteerAngle = maxSteerAngle * Input.GetAxis("MoveHorizontalP" + player.playerNumber);
+        currentMotorTorque = motorTorque * Input.GetAxis("MoveVerticalP" + player.playerNumber);
+        //currentBrakeTorque = brakeTorque * Input.GetAxis("AbilityP");
     }
 
     void FixedUpdate()

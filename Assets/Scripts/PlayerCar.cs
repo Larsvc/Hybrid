@@ -181,7 +181,9 @@ public class PlayerCar : HealthEntity
 
         //0 = front, 1 = top 1, 3 = top 2, 2 = back;
         //return new string[] { "Ram", "Minigun", "Booster", "Shield" };
-        return ModuleController.instance.modules;
+        if (ModuleController.instance != null)
+            return ModuleController.instance.modules;
+        else return new string[] { "Ram", "Minigun", "Booster", "Shield" };
     }
 
     // Update is called once per frame
