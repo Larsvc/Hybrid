@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject p1WinScreen;
     [SerializeField] private GameObject p2WinScreen;
 
+    public static string[][] playerSelectedModules = new string[4][];
+
     void Start()
     {
         instance = this;

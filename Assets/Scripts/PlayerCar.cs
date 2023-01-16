@@ -180,7 +180,8 @@ public class PlayerCar : HealthEntity
         //return selectedModules;
 
         //0 = front, 1 = top 1, 3 = top 2, 2 = back;
-        return new string[] { "Ram", "Minigun", "Booster", "Shield" };
+        //return new string[] { "Ram", "Minigun", "Booster", "Shield" };
+        return ModuleController.instance.modules;
     }
 
     // Update is called once per frame
@@ -190,29 +191,35 @@ public class PlayerCar : HealthEntity
 
         healthText.text = "Health: " + Mathf.CeilToInt(health);
 
-        if (!IsDead)
-            HandleMovement();
-
-        if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
-            SetShootTrigger();
-
-        if (Input.GetAxisRaw(ability + playerNumber) != 0)
+        if (!pickingModules)
         {
-            ActivateAbilities();
-        }
+            if (!IsDead)
+                HandleMovement();
 
-        if (pickingModules)
+            if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
+                SetShootTrigger();
+
+            if (Input.GetAxisRaw(ability + playerNumber) != 0)
+            {
+                ActivateAbilities();
+            }
+
+            if (pickingModules)
+                CheckForModules();
+
+            if (IsDead)
+            {
+                respawnTimer -= Time.deltaTime;
+                deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
+            }
+
+
+            if (respawnTimer <= 0)
+                Respawn();
+        }else
+        {
             CheckForModules();
-
-        if (IsDead)
-        {
-            respawnTimer -= Time.deltaTime;
-            deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
         }
-            
-
-        if (respawnTimer <= 0)
-            Respawn();
     }
 
     private void FixedUpdate()
