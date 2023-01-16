@@ -6,20 +6,57 @@ public class FlagIndicator : MonoBehaviour
     public Transform flag;
     public Image indicator;
     public float cornerThreshold = 0.1f;
+    public bool rightScreenIndicator = true;
+    public Camera cam;
 
     void Update()
     {
-        Vector3 flagScreenPos = Camera.main.WorldToScreenPoint(flag.position);
-        indicator.transform.position = flagScreenPos;
+        Vector3 flagScreenPos = cam.WorldToScreenPoint(flag.position);
+        int middle = Screen.width / 2;
 
-        if (flagScreenPos.x < Screen.width * cornerThreshold || flagScreenPos.x > Screen.width * (1 - cornerThreshold) ||
-            flagScreenPos.y < Screen.height * cornerThreshold || flagScreenPos.y > Screen.height * (1 - cornerThreshold))
+        if (rightScreenIndicator)
         {
-            indicator.color = Color.red;
+            if (flagScreenPos.x < middle + middle * cornerThreshold && flagScreenPos.x > middle)
+            {
+                if (flagScreenPos.y < Screen.height * cornerThreshold)
+                {
+                    indicator.transform.position = new Vector3(middle, 0, 0);
+                }
+                else if (flagScreenPos.y > Screen.height * (1 - cornerThreshold))
+                {
+                    indicator.transform.position = new Vector3(middle, Screen.height, 0);
+                }
+                else
+                {
+                    indicator.transform.position = flagScreenPos;
+                }
+            }
+            else
+            {
+                indicator.transform.position = new Vector3(-1000, -1000, 0);
+            }
         }
         else
         {
-            indicator.color = Color.green;
+            if (flagScreenPos.x > middle - middle * cornerThreshold && flagScreenPos.x < middle)
+            {
+                if (flagScreenPos.y < Screen.height * cornerThreshold)
+                {
+                    indicator.transform.position = new Vector3(middle, 0, 0);
+                }
+                else if (flagScreenPos.y > Screen.height * (1 - cornerThreshold))
+                {
+                    indicator.transform.position = new Vector3(middle, Screen.height, 0);
+                }
+                else
+                {
+                    indicator.transform.position = flagScreenPos;
+                }
+            }
+            else
+            {
+                indicator.transform.position = new Vector3(-1000, -1000, 0);
+            }
         }
     }
 }

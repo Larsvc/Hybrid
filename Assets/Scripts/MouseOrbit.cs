@@ -61,6 +61,8 @@ public class MouseOrbit : MonoBehaviour
         {
             Transform m = g.transform;
             m.eulerAngles = new Vector3(m.eulerAngles.x, transform.eulerAngles.y, m.eulerAngles.z);
+            m.up = m.root.transform.TransformDirection(Vector3.up);
+            m.GetChild(1).eulerAngles = transform.eulerAngles;
         }
     }
 

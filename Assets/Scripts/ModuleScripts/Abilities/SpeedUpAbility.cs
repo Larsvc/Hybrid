@@ -12,6 +12,8 @@ public class SpeedUpAbility : AbilityModule
 
     bool activated;
 
+    private Rigidbody playerRB;
+
     protected override float Cooldown
     {
         get { return 10f; }
@@ -39,6 +41,8 @@ public class SpeedUpAbility : AbilityModule
         base.Start();
         player = transform.root.gameObject;
         basePlayerSpeed = player.GetComponent<PlayerCar>().moveSpeed;
+
+        playerRB = player.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -50,6 +54,6 @@ public class SpeedUpAbility : AbilityModule
     private void FixedUpdate()
     {
         if (activated)
-            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * forceModifier, ForceMode.Impulse);
+            playerRB.AddForce(player.transform.forward * forceModifier * playerRB.mass, ForceMode.Impulse);
     }
 }

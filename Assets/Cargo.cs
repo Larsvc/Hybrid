@@ -38,7 +38,7 @@ public class Cargo : HealthEntity
             Die();
     }
 
-    private void Pickup(Transform player, bool pickup)
+    public void Pickup(Transform player, bool pickup)
     {
         pickedUp = pickup;
         transform.SetParent(player);

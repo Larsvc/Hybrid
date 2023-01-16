@@ -26,6 +26,7 @@ public class CapturePoint : MonoBehaviour
             //Destroy(other.gameObject);
             GameManager.instance.AddPoint(playerNumber);
             Debug.Log("yoo ik score voor " + playerNumber);
+            other.GetComponent<Cargo>().Pickup(null, false);
             DoVisuals(other);
         }
     }

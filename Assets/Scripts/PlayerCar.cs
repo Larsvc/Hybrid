@@ -154,7 +154,7 @@ public class PlayerCar : HealthEntity
         if (modulePrefab != null)
         {
             GameObject module = Instantiate(modulePrefab, moduleSlots[slot].position + modulePrefab.GetComponent<Module>().offset, Quaternion.identity, moduleSlots[slot]);
-            module.transform.forward = transform.forward;
+            module.transform.forward = moduleSlots[slot].transform.TransformDirection(Vector3.forward);
             module.transform.rotation *= modulePrefab.transform.rotation;
             //allModules[slot] = module.GetComponent<Module>();
         }
@@ -178,7 +178,9 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Minigun", "Launcher", "Ram", "Shield" };
+
+        //0 = front, 1 = top 1, 3 = top 2, 2 = back;
+        return new string[] { "Ram", "Minigun", "Booster", "Launcher" };
     }
 
     // Update is called once per frame
@@ -216,9 +218,9 @@ public class PlayerCar : HealthEntity
     private void FixedUpdate()
     {
         //rb.AddTorque(transform.up * hor * rotateSpeed);
-        rb.MoveRotation(Quaternion.Euler(Vector3.up * hor * rotateSpeed) * transform.rotation);
+        //rb.MoveRotation(Quaternion.Euler(Vector3.up * hor * rotateSpeed) * transform.rotation);
         //transform.position += transform.forward * vert * moveSpeed * Time.deltaTime;
-        rb.AddForce(transform.forward * vert * moveSpeed, ForceMode.Acceleration);
+        //rb.AddForce(transform.forward * vert * moveSpeed, ForceMode.Acceleration);
         //rb.MovePosition(rb.position + (transform.forward * vert * moveSpeed * Time.fixedDeltaTime));
     }
 
