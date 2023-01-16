@@ -77,7 +77,7 @@ public class CannonModule : ShootModule
 
         canShoot = false;
 
-       StartCoroutine(WaitForFireRate());
+        StartCoroutine(WaitForFireRate());
     }
 
     private HealthEntity FirstParent(Transform t)

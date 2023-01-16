@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Projectile : MonoBehaviour
 {
     [HideInInspector] public LayerMask mask;
 
     [SerializeField] private float damage = 60f;
+    [SerializeField] private float radius = 5f;
     private Animator hitmarkerFromPlayer;
     bool dead;
 
@@ -33,10 +35,23 @@ public class Projectile : MonoBehaviour
         {
             dead = true;
 
-            bool canDamage = FirstParent(collision.collider.transform);
-            if (canDamage)
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+            List<HealthEntity> shouldBeDamaged = new List<HealthEntity>();
+
+            foreach (Collider c in colliders)
             {
-                FirstParent(collision.collider.transform).TakeHit(damage, hitmarkerFromPlayer);
+                HealthEntity fp = FirstParent(c.transform);
+                if (fp && !shouldBeDamaged.Contains(fp))
+                {
+                    fp.TakeHit(damage, hitmarkerFromPlayer);
+                    shouldBeDamaged.Add(fp);
+                }
+                    
+                /*bool canDamage = FirstParent(collision.collider.transform);
+                if (canDamage)
+                {
+                    FirstParent(collision.collider.transform).TakeHit(damage, hitmarkerFromPlayer);
+                }*/
             }
 
             GameObject explosion = Instantiate(PrefabManager.instance.cannonballExplosion, transform.position, Quaternion.identity);
@@ -51,10 +66,23 @@ public class Projectile : MonoBehaviour
         {
             dead = true;
 
-            bool canDamage = FirstParent(col.transform); //TODO: this gets the parent instead of the child itself
-            if (canDamage)
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+            List<HealthEntity> shouldBeDamaged = new List<HealthEntity>();
+
+            foreach (Collider c in colliders)
             {
-                FirstParent(col.transform).TakeHit(damage, hitmarkerFromPlayer);
+                HealthEntity fp = FirstParent(c.transform);
+                if (!shouldBeDamaged.Contains(fp))
+                {
+                    fp.TakeHit(damage, hitmarkerFromPlayer);
+                    shouldBeDamaged.Add(fp);
+                }
+
+                /*bool canDamage = FirstParent(collision.collider.transform);
+                if (canDamage)
+                {
+                    FirstParent(collision.collider.transform).TakeHit(damage, hitmarkerFromPlayer);
+                }*/
             }
 
             GameObject explosion = Instantiate(PrefabManager.instance.cannonballExplosion, transform.position, Quaternion.identity);
