@@ -32,6 +32,7 @@ public class SpeedUpAbility : AbilityModule
         //player.GetComponent<PlayerCar>().moveSpeed = basePlayerSpeed;
         activated = false;
         GetComponentInChildren<AudioSource>().Stop();
+        GetComponentInChildren<ParticleSystem>().Stop();
     }
 
 

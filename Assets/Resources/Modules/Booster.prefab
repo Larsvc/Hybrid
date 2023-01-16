@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 250
   IsDead: 0
-  forceModifier: 0.1
+  forceModifier: 0.15
   spedUpTime: 3
 --- !u!1 &5634371990911918844
 GameObject:
@@ -219,7 +219,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0

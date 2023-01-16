@@ -45,7 +45,7 @@ public class ShieldModule : AbilityModule
         }
         else
         {
-            transform.GetChild(0).GetComponent<Animator>().SetTrigger("hit");
+            shield.GetComponent<Animator>().SetTrigger("hit");
             GetComponent<AudioSource>().Play();
             GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.3f);
         }
