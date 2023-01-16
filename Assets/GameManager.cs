@@ -19,7 +19,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject p1WinScreen;
     [SerializeField] private GameObject p2WinScreen;
 
-    public static string[][] playerSelectedModules = new string[4][];
+    public static ModuleInfo[] playerSelectedModules = new ModuleInfo[2];
+
+    public class ModuleInfo
+    {
+        public string[] modules = new string[4];
+
+        public ModuleInfo(string[] mods)
+        {
+            modules = mods;
+        }
+    }
+
+    public void SelectModules(int player)
+    {
+        playerSelectedModules[player - 1] = new ModuleInfo(ModuleController.instance.modules);
+    }
 
     void Start()
     {

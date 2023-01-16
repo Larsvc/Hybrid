@@ -181,8 +181,8 @@ public class PlayerCar : HealthEntity
 
         //0 = front, 1 = top 1, 3 = top 2, 2 = back;
         //return new string[] { "Ram", "Minigun", "Booster", "Shield" };
-        if (ModuleController.instance != null)
-            return ModuleController.instance.modules;
+        if (GameManager.playerSelectedModules[playerNumber - 1] != null)
+            return GameManager.playerSelectedModules[playerNumber - 1].modules;
         else return new string[] { "Ram", "Minigun", "Booster", "Shield" };
     }
 
@@ -195,6 +195,9 @@ public class PlayerCar : HealthEntity
 
         if (!pickingModules)
         {
+            if (!IsDead)
+                HandleMovement();
+
             if (Input.GetAxisRaw(shoot + playerNumber) != 0 && canShoot)
                 SetShootTrigger();
 
