@@ -266,8 +266,6 @@ public class PlayerCar : HealthEntity
 
     private void Respawn()
     {        
-        CheckForModules();
-        FinalizeModuleSelection();
         transform.position = respawnPoint.position;
         transform.rotation = respawnPoint.rotation;
         health = maxHealth;
@@ -278,6 +276,8 @@ public class PlayerCar : HealthEntity
         respawnTimer = respawnTime;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        CheckForModules();
+        FinalizeModuleSelection();
     }
 
     public override void TakeHit(float damage,  Animator hitmarker)

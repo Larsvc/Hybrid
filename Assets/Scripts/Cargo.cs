@@ -44,7 +44,7 @@ public class Cargo : HealthEntity
         transform.SetParent(player);
 
         if (pickup)
-            transform.localPosition = new Vector3(0, 0, -5f);
+            transform.localPosition = new Vector3(0, 1, -5f);
 
         //GetComponent<Collider>().isTrigger = !pickup;
         /*GetComponentInChildren<ParticleSystem>().Clear();
