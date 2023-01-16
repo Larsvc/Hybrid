@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5173407807777630214}
   - component: {fileID: 5173407807777630215}
   - component: {fileID: 5173407807777630232}
+  - component: {fileID: 150170796765294677}
   m_Layer: 0
   m_Name: CannonballHitExplosion
   m_TagString: Untagged
@@ -4910,3 +4911,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &150170796765294677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5173407807777630212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb38d0ab11b99b345bfa24d2a3d510d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

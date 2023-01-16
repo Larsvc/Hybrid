@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform cargoSpawnPoint;
     [SerializeField] private GameObject cargoPrefab;
     [SerializeField] private TextMeshProUGUI captureText;
+    [SerializeField] private int maxScore = 3;
+    [SerializeField] private GameObject p1WinScreen;
+    [SerializeField] private GameObject p2WinScreen;
 
     void Start()
     {
@@ -52,5 +55,11 @@ public class GameManager : MonoBehaviour
         captureText.GetComponent<Animator>().SetTrigger("capture");
         captureText.GetComponent<AudioSource>().Play();
         captureText.text = "Player " + player + " captured the cargo!";
+
+        // Checken of iemand gewonnen heeft
+        if (scores[0] >= maxScore)
+            p1WinScreen.SetActive(true);
+        if (scores[1] >= maxScore)
+            p2WinScreen.SetActive(true);
     }
 }
