@@ -31,7 +31,7 @@ public class Cargo : HealthEntity
             GetComponentInChildren<ParticleSystem>().Stop();
         }
 
-        if (carriedBy.IsDead)
+        if (carriedBy && carriedBy.IsDead)
             Pickup(null, false);
 
         if (transform.position.y < -2f)

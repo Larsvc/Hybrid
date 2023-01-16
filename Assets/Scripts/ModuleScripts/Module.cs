@@ -10,7 +10,10 @@ public abstract class Module : HealthEntity
     {
         get
         {
-            return transform.position - transform.GetChild(0).position;
+            if (transform.childCount > 0)
+                return transform.position - transform.GetChild(0).position;
+            else
+                return Vector3.zero;
         }
     }
 

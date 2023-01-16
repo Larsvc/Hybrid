@@ -9,7 +9,7 @@ public class PlayerCar : HealthEntity
 {
     [Header("Properties")]
     public float rotateSpeed = 3f;
-    [HideInInspector] public float baseSpeed = 42f;
+    public float baseSpeed = 2f;
     private float currentSpeed;
     private float moduleSlowModifier = 0.075f;
 
@@ -155,6 +155,7 @@ public class PlayerCar : HealthEntity
         {
             GameObject module = Instantiate(modulePrefab, moduleSlots[slot].position + modulePrefab.GetComponent<Module>().offset, Quaternion.identity, moduleSlots[slot]);
             module.transform.forward = transform.forward;
+            module.transform.rotation *= modulePrefab.transform.rotation;
             //allModules[slot] = module.GetComponent<Module>();
         }
         else
@@ -177,7 +178,7 @@ public class PlayerCar : HealthEntity
     private string[] ReadModulesFromChips() //TODO: read from chips
     {
         //return selectedModules;
-        return new string[] { "Minigun", "Launcher", "Booster", "Booster" };
+        return new string[] { "Minigun", "Launcher", "Ram", "Shield" };
     }
 
     // Update is called once per frame
@@ -218,6 +219,7 @@ public class PlayerCar : HealthEntity
         rb.MoveRotation(Quaternion.Euler(Vector3.up * hor * rotateSpeed) * transform.rotation);
         //transform.position += transform.forward * vert * moveSpeed * Time.deltaTime;
         rb.AddForce(transform.forward * vert * moveSpeed, ForceMode.Acceleration);
+        //rb.MovePosition(rb.position + (transform.forward * vert * moveSpeed * Time.fixedDeltaTime));
     }
 
     private void HandleMovement()
@@ -262,6 +264,8 @@ public class PlayerCar : HealthEntity
         redHealthBar.SetHealth(health);
         IsDead = false;
         respawnTimer = respawnTime;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
     public override void TakeHit(float damage,  Animator hitmarker)

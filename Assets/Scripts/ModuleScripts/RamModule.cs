@@ -33,10 +33,11 @@ public class RamModule : Module
         Transform otherBase = other.transform.root;
         if (otherBase.tag == "Player" && otherBase != transform.root)
         {
-            other.transform.GetComponent<HealthEntity>().TakeHit(actualDamage, player.hitmarker);
+            otherBase.GetComponent<HealthEntity>().TakeHit(actualDamage, player.hitmarker);
             otherBase.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Force);
             player.GetComponent<Rigidbody>().velocity *= 0.8f;
             player.cam.GetComponent<CameraShake>().startShaking(0.2f, 1f * multiplier, 80f);
         }
     }
+
 }

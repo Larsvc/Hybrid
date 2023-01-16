@@ -30,7 +30,6 @@ public abstract class HealthEntity : MonoBehaviour
 
     public virtual void TakeHit(float damage, Animator hitmarker)
     {
-        Debug.Log("dikke tering hitmarker is " + hitmarker.name);
         hitmarker.SetTrigger("hit");
         health -= damage;
         animator.SetTrigger("hit");
