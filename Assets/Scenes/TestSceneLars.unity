@@ -2366,6 +2366,8 @@ MonoBehaviour:
   respawnTime: 5
   deathScreen: {fileID: 2063537953}
   flipDelay: 3
+  regendelay: 5
+  regenPercentagePerSecond: 0.1
   moduleSlots:
   - {fileID: 1995600184}
   - {fileID: 405060459}
@@ -17309,6 +17311,8 @@ MonoBehaviour:
   respawnTime: 5
   deathScreen: {fileID: 513903855}
   flipDelay: 3
+  regendelay: 5
+  regenPercentagePerSecond: 0.1
   moduleSlots:
   - {fileID: 605390391}
   - {fileID: 353224056}
@@ -17412,7 +17416,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -20843,6 +20847,8 @@ MonoBehaviour:
   respawnTime: 5
   deathScreen: {fileID: 513903855}
   flipDelay: 3
+  regendelay: 5
+  regenPercentagePerSecond: 0.1
   moduleSlots:
   - {fileID: 1575685047}
   - {fileID: 2033561003}
@@ -21148,7 +21154,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -21211,6 +21217,8 @@ MonoBehaviour:
   respawnTime: 5
   deathScreen: {fileID: 2063537953}
   flipDelay: 3
+  regendelay: 5
+  regenPercentagePerSecond: 0.1
   moduleSlots:
   - {fileID: 489903843}
   - {fileID: 84280239}
@@ -23916,6 +23924,8 @@ MonoBehaviour:
   respawnTime: 5
   deathScreen: {fileID: 513903855}
   flipDelay: 3
+  regendelay: 5
+  regenPercentagePerSecond: 0.1
   moduleSlots:
   - {fileID: 1931973670}
   - {fileID: 57876036}
@@ -26646,6 +26656,8 @@ MonoBehaviour:
   respawnTime: 5
   deathScreen: {fileID: 0}
   flipDelay: 3
+  regendelay: 5
+  regenPercentagePerSecond: 0.1
   moduleSlots: []
   selectedModules: []
   gunModules: []
