@@ -44,6 +44,15 @@ public class PlayerCar : HealthEntity
     private const string verticalControls = "MoveVerticalP";
     private const string shoot = "FireP";
     private const string ability = "AbilityP";
+    private const string flip = "FlipP";
+
+    private bool flipCounting;
+    private float flipTimer;
+    [SerializeField] private float flipDelay = 3f;
+
+    [SerializeField] private float regendelay = 5f;
+    private float regenTimer;
+    [SerializeField] private float regenPercentagePerSecond = 0.1f;
 
     private float normalVolume;
     private bool canShoot = true;
@@ -232,13 +241,25 @@ public class PlayerCar : HealthEntity
                 deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
             }
 
+            SetHp();
 
             if (respawnTimer <= 0)
                 Respawn();
-        }else
+        }
+        else
         {
             CheckForModules();
         }
+    }
+
+    private void SetHp()
+    {
+        greenHealthBar.SetHealth(health);
+        redHealthBar.SetHealth(health);
+        float regenValue = regenPercentagePerSecond * maxHealth * Time.deltaTime;
+        if (regenTimer <= 0)
+            health = Mathf.Min(health + regenValue, maxHealth);
+        regenTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -263,6 +284,25 @@ public class PlayerCar : HealthEntity
 
         if (transform.position.y < -2f)
             Die();
+
+        if (Vector3.Angle(transform.up, Vector3.up) > 80 && rb.velocity.magnitude < 1)
+        {
+            if (!flipCounting)
+                flipCounting = true;
+            else
+                flipTimer -= Time.deltaTime;
+        }
+            
+        
+
+        if (Input.GetAxisRaw(flip + playerNumber) != 0 || flipTimer <= 0)
+        {
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            flipCounting = false;                
+            flipTimer = flipDelay;
+        }
+            
+
     }
 
     private void SetShootTrigger()
@@ -303,8 +343,7 @@ public class PlayerCar : HealthEntity
         {
             base.TakeHit(damage, hitmarker);
             audioSource.PlayOneShot(hitSound);
-            greenHealthBar.SetHealth(health);
-            redHealthBar.SetHealth(health);
+            regenTimer = regendelay;
         }
     }
 
