@@ -2527,7 +2527,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 138293eaffda4694993ddb870dca6a4a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17372,7 +17372,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3860f6b15fc5d0f44b77011cab204a93, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -18547,7 +18547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1191022027}
   playerHip: {fileID: 965114437}
-  distance: 7
+  distance: 9
   lookHorizontal: LookHorizontalP1
   lookVertical: LookVerticalP1
   yMinLimit: -20
@@ -19060,7 +19060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965114436}
   m_LocalRotation: {x: -0, y: -0.028276954, z: -0, w: 0.9996002}
-  m_LocalPosition: {x: -0.041419983, y: 3.5, z: -0.07}
+  m_LocalPosition: {x: -0.041419983, y: 3.8, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21110,7 +21110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3860f6b15fc5d0f44b77011cab204a93, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -23023,7 +23023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522533809}
   m_LocalRotation: {x: -0, y: -0.028276954, z: -0, w: 0.9996002}
-  m_LocalPosition: {x: -0.041419983, y: 3.5, z: -0.07}
+  m_LocalPosition: {x: -0.041419983, y: 2.7, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25893,7 +25893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 725260350}
   playerHip: {fileID: 1522533810}
-  distance: 7
+  distance: 9
   lookHorizontal: LookHorizontalP2
   lookVertical: LookVerticalP2
   yMinLimit: -20
@@ -26212,7 +26212,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 138293eaffda4694993ddb870dca6a4a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
