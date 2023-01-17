@@ -64,6 +64,10 @@ public class PlayerCar : HealthEntity
     protected override void Start()
     {
         base.Start();
+
+        if (pickingModules)
+            return;
+
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -127,7 +131,9 @@ public class PlayerCar : HealthEntity
 
     private void CheckForModules()
     {
-        if (!IsDead)
+        if (!IsDead && !pickingModules)
+            selectedModules = GetPickedModules();
+        else if (!IsDead)
             selectedModules = ReadModulesFromChips();
 
         for (int i = 0; i < moduleSlots.Length; i++)
@@ -181,6 +187,14 @@ public class PlayerCar : HealthEntity
 
         //0 = front, 1 = top 1, 3 = top 2, 2 = back;
         //return new string[] { "Ram", "Minigun", "Booster", "Shield" };
+        if (ModuleController.instance != null)
+            return ModuleController.instance.modules;
+        else
+            return null;
+    }
+
+    private string[] GetPickedModules()
+    {
         if (GameManager.playerSelectedModules[playerNumber - 1] != null)
             return GameManager.playerSelectedModules[playerNumber - 1].modules;
         else return new string[] { "Ram", "Minigun", "Booster", "Shield" };
@@ -191,10 +205,10 @@ public class PlayerCar : HealthEntity
     {
         base.Update();
 
-        healthText.text = "Health: " + Mathf.CeilToInt(health);
-
         if (!pickingModules)
         {
+            healthText.text = "Health: " + Mathf.CeilToInt(health);
+
             if (!IsDead)
                 HandleMovement();
 

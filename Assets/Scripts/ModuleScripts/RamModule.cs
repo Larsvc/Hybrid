@@ -34,7 +34,7 @@ public class RamModule : Module
         if (otherBase.tag == "Player" && otherBase != transform.root)
         {
             otherBase.GetComponent<HealthEntity>().TakeHit(actualDamage, player.hitmarker);
-            otherBase.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Force);
+            otherBase.GetComponent<Rigidbody>().AddForce(transform.forward * force * otherBase.GetComponent<Rigidbody>().mass, ForceMode.Force);
             player.GetComponent<Rigidbody>().velocity *= 0.8f;
             player.cam.GetComponent<CameraShake>().startShaking(0.2f, 1f * multiplier, 80f);
         }

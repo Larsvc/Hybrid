@@ -13,9 +13,12 @@ public class ModuleController : MonoBehaviour
     public string[] modules = new string[4];
     public static ModuleController instance;
 
+    private ConnectionShower connectionStatus;
+
     private void Start()
     {
         instance = this;
+        connectionStatus = GetComponent<ConnectionShower>();
     }
 
     // Executed each frame
@@ -40,9 +43,15 @@ public class ModuleController : MonoBehaviour
 
         // Check if the message is plain data or a connect/disconnect event.
         if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
+        {
+            connectionStatus.ShowConnection(1);
             Debug.Log("Connection established");
+        }
         else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
+        {
+            connectionStatus.ShowConnection(0);
             Debug.Log("Connection attempt failed or disconnection detected");
+        }
         else
         {
             Debug.Log(message);
