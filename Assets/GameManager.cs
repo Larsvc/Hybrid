@@ -62,8 +62,11 @@ public class GameManager : MonoBehaviour
 
     private void UpdateText()
     {
-        scoreTexts[0].text = scores[0].ToString();
-        scoreTexts[1].text = scores[1].ToString();
+        if (scoreTexts[0])
+        {
+            scoreTexts[0].text = scores[0].ToString();
+            scoreTexts[1].text = scores[1].ToString();
+        }
     }
 
     private void CheckCargo()
@@ -81,8 +84,20 @@ public class GameManager : MonoBehaviour
 
         // Checken of iemand gewonnen heeft
         if (scores[0] >= maxScore)
+        {
             p1WinScreen.SetActive(true);
+            StartCoroutine(LoadBuildingScene());
+        }
         if (scores[1] >= maxScore)
+        {
             p2WinScreen.SetActive(true);
+            StartCoroutine(LoadBuildingScene());
+        }
+    }
+
+    public IEnumerator LoadBuildingScene()
+    {
+        yield return new WaitForSeconds(4f);
+        Application.LoadLevel(0);
     }
 }

@@ -66,7 +66,8 @@ public class Projectile : MonoBehaviour
                 HealthEntity fp = FirstParent(c.transform);
                 if (fp && !shouldBeDamaged.Contains(fp))
                 {
-                    fp.TakeHit(damage, hitmarkerFromPlayer);
+                    float distance = Vector3.Distance(transform.position, fp.transform.position);
+                    fp.TakeHit(damage / distance, hitmarkerFromPlayer);
                     shouldBeDamaged.Add(fp);
                 }
 

@@ -40,6 +40,8 @@ public class MouseOrbit : MonoBehaviour
         x = angles.y;
         y = angles.x;
 
+
+        Debug.Log("camera probeert nu de RB te krijgen");
         rigidbody = GetComponent<Rigidbody>();
 
         // Make the rigid body not change rotation
@@ -47,6 +49,8 @@ public class MouseOrbit : MonoBehaviour
         {
             rigidbody.freezeRotation = true;
         }
+
+        Debug.Log("Yo ben aan einde van start!");
 
         //modules = target.Find("Modules").GetComponentsInChildren<ShootModule>();
     }
@@ -70,8 +74,10 @@ public class MouseOrbit : MonoBehaviour
     {
         bool isMoving = Input.GetAxis("Vertical") != 0;
 
+        Debug.Log($"Ik ga nu de if in");
         if (target)
         {
+            Debug.Log($"Zit in de if");
             x += Input.GetAxis(lookHorizontal) * xSpeed * lookModifier * Time.deltaTime;
             y -= Input.GetAxis(lookVertical) * ySpeed * lookModifier * Time.deltaTime;
             /*else if (isMoving || Input.GetMouseButton(1))
@@ -101,6 +107,8 @@ public class MouseOrbit : MonoBehaviour
 
             transform.rotation = rotation;
             transform.position = position;
+
+            Debug.Log($"Mijn positie is geset naar {transform.position} en mijn rotatie naar {transform.eulerAngles}");
         }
     }
 

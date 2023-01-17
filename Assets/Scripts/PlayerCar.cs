@@ -232,16 +232,14 @@ public class PlayerCar : HealthEntity
                 ActivateAbilities();
             }
 
-            if (pickingModules)
-                CheckForModules();
-
             if (IsDead)
             {
                 respawnTimer -= Time.deltaTime;
                 deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
             }
 
-            SetHp();
+            if (greenHealthBar && redHealthBar)
+                SetHp();
 
             if (respawnTimer <= 0)
                 Respawn();

@@ -22,8 +22,6 @@ public class BuildMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentPlayerIndex);
-        Debug.Log("lengte: " + screens.Length);
         if (Input.GetAxisRaw("Submit") != 0 && !wasUp && currentPlayerIndex < screens.Length - 1)
         {
             players[currentPlayerIndex].pickingModules = false;
