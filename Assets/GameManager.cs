@@ -74,9 +74,9 @@ public class GameManager : MonoBehaviour
         captureText.text = "Player " + player + " captured the cargo!";
 
         // Checken of iemand gewonnen heeft
-        /*if (scores[0] >= maxScore)
+        if (scores[0] >= maxScore)
             p1WinScreen.SetActive(true);
         if (scores[1] >= maxScore)
-            p2WinScreen.SetActive(true);*/
+            p2WinScreen.SetActive(true);
     }
 }
