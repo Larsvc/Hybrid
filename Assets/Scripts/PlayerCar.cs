@@ -50,6 +50,10 @@ public class PlayerCar : HealthEntity
     private float flipTimer;
     [SerializeField] private float flipDelay = 3f;
 
+    [SerializeField] private float regendelay = 5f;
+    private float regenTimer;
+    [SerializeField] private float regenPercentagePerSecond = 0.1f;
+
     private float normalVolume;
     private bool canShoot = true;
 
@@ -234,13 +238,25 @@ public class PlayerCar : HealthEntity
                 deathScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Respawning in " + Math.Round(respawnTimer) + " seconds.";
             }
 
+            SetHp();
 
             if (respawnTimer <= 0)
                 Respawn();
-        }else
+        }
+        else
         {
             CheckForModules();
         }
+    }
+
+    private void SetHp()
+    {
+        greenHealthBar.SetHealth(health);
+        redHealthBar.SetHealth(health);
+        float regenValue = regenPercentagePerSecond * maxHealth * Time.deltaTime;
+        if (regenTimer <= 0)
+            health = Mathf.Min(health + regenValue, maxHealth);
+        regenTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -324,8 +340,7 @@ public class PlayerCar : HealthEntity
         {
             base.TakeHit(damage, hitmarker);
             audioSource.PlayOneShot(hitSound);
-            greenHealthBar.SetHealth(health);
-            redHealthBar.SetHealth(health);
+            regenTimer = regendelay;
         }
     }
 
