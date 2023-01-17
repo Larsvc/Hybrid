@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/BotLoadingScene.unity
+    guid: 9abb0554771243842890286ed0b86ff2
+  - enabled: 1
+    path: Assets/Scenes/TestSceneLars.unity
+    guid: 6c6be032dc048874c82970fb7c08c6c0
   m_configObjects: {}

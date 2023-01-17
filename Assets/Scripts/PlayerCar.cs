@@ -136,6 +136,9 @@ public class PlayerCar : HealthEntity
         else if (!IsDead)
             selectedModules = ReadModulesFromChips();
 
+        if (selectedModules[0] == "") //TODO: YOU DO NOT WANT THIS!! (pass by reference)
+            selectedModules[0] = "Ram";
+
         for (int i = 0; i < moduleSlots.Length; i++)
         {
             if (moduleSlots[i].childCount == 0 && selectedModules[i] != "")

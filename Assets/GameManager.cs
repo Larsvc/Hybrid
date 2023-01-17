@@ -31,9 +31,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SelectModules(int player)
+    public void SelectModules(int playerIndex)
     {
-        playerSelectedModules[player - 1] = new ModuleInfo(ModuleController.instance.modules);
+        string[] modules = new string[ModuleController.instance.modules.Length];
+        for (int i = 0; i < modules.Length; i++)
+        {
+            modules[i] = ModuleController.instance.modules[i];
+        }
+
+        playerSelectedModules[playerIndex] = new ModuleInfo(modules);
     }
 
     void Start()
