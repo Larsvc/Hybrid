@@ -21,7 +21,7 @@ public class ConnectionShower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moduleText.text = "Modules connected: " + ModuleController.instance.modules.Where(m => m != "").ToArray().Length;
+        moduleText.text = "Modules attached: " + ModuleController.instance.modules.Where(m => m != "").ToArray().Length;
     }
 
     public void ShowConnection(int connected)
