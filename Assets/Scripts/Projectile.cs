@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour
                 if (fp && !shouldBeDamaged.Contains(fp))
                 {
                     float distance = Vector3.Distance(transform.position, fp.transform.position);
-                    fp.TakeHit(damage / distance, hitmarkerFromPlayer);
+                    fp.TakeHit(damage / Mathf.Sqrt(distance), hitmarkerFromPlayer);
                     shouldBeDamaged.Add(fp);
                 }
 

@@ -33,7 +33,9 @@ public class BuildMenu : MonoBehaviour
             currentPlayerIndex++;
 
             if (currentPlayerIndex < players.Length)
+            {
                 players[currentPlayerIndex].pickingModules = true;
+            }
 
             if (currentPlayerIndex == screens.Length - 1)
                 Application.LoadLevel(1);

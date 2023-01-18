@@ -435,7 +435,7 @@ MonoBehaviour:
     type: 3}
   fireRate: 0.8
   damage: 6
-  cannonShot: {fileID: 8300000, guid: 6fcd87219f7e78349982a0e684fee0f5, type: 3}
+  cannonShot: {fileID: 8300000, guid: 54e88030f4193294580dd6c2afd08221, type: 3}
   barrel: {fileID: 8451867303914084051}
 --- !u!1 &5004945624014108063
 GameObject:

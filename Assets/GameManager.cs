@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject p1WinScreen;
     [SerializeField] private GameObject p2WinScreen;
 
+    private FlagIndicator flagIndicator;
+
     public static ModuleInfo[] playerSelectedModules = new ModuleInfo[2];
 
     public class ModuleInfo
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < scoreTexts.Length; i++)
             scoreTexts[i] = GameObject.Find("ScoreText" + (i + 1)).GetComponent<TextMeshProUGUI>();
+
+        if (GetComponent<FlagIndicator>())
+            flagIndicator = GetComponent<FlagIndicator>();
     }
 
     // Update is called once per frame
@@ -73,6 +78,11 @@ public class GameManager : MonoBehaviour
     {
         if (currentCargo == null)
             currentCargo = Instantiate(cargoPrefab, cargoSpawnPoint.position, Quaternion.identity);
+
+        if (currentCargo && !currentCargo.GetComponent<Cargo>().carriedBy)
+            flagIndicator.flag = currentCargo.transform;
+        else
+            flagIndicator.flag = null;
     }
 
     public void AddPoint(int player)

@@ -3,60 +3,69 @@ using UnityEngine.UI;
 
 public class FlagIndicator : MonoBehaviour
 {
-    public Transform flag;
-    public Image indicator;
-    public float cornerThreshold = 0.1f;
-    public bool rightScreenIndicator = true;
-    public Camera cam;
+    public Transform flag; // Assign the flag object in the inspector
+    public Image leftIndicator; // Assign the left indicator image in the inspector
+    public Image rightIndicator; // Assign the right indicator image in the inspector
+
+    public Camera cam1;
+    public Camera cam2;
+
+    private float borderPadding = 32;
 
     void Update()
     {
-        Vector3 flagScreenPos = cam.WorldToScreenPoint(flag.position);
-        int middle = Screen.width / 2;
+        // Get the flag's position on the screen
+        Vector3 flagScreenPos1 = Vector3.zero, flagScreenPos2 = Vector3.zero;
 
-        if (rightScreenIndicator)
+        if (flag)
         {
-            if (flagScreenPos.x < middle + middle * cornerThreshold && flagScreenPos.x > middle)
-            {
-                if (flagScreenPos.y < Screen.height * cornerThreshold)
-                {
-                    indicator.transform.position = new Vector3(middle, 0, 0);
-                }
-                else if (flagScreenPos.y > Screen.height * (1 - cornerThreshold))
-                {
-                    indicator.transform.position = new Vector3(middle, Screen.height, 0);
-                }
-                else
-                {
-                    indicator.transform.position = flagScreenPos;
-                }
-            }
-            else
-            {
-                indicator.transform.position = new Vector3(-1000, -1000, 0);
-            }
-        }
-        else
+            flagScreenPos1 = cam1.WorldToScreenPoint(flag.position);
+            flagScreenPos2 = cam2.WorldToScreenPoint(flag.position);
+            var horizontalRelation1 = new Vector3(flag.position.x, cam1.transform.position.y, flag.position.z);
+
+            var targetDir = horizontalRelation1 - cam1.transform.position;
+            var forward = cam1.transform.forward;
+            var angle1 = Vector3.Angle(targetDir, forward);
+
+            var horizontalRelation2 = new Vector3(flag.position.x, cam2.transform.position.y, flag.position.z);
+
+            var targetDir2 = horizontalRelation2 - cam2.transform.position;
+            var forward2 = cam2.transform.forward;
+            var angle2 = Vector3.Angle(targetDir2, forward2);
+
+            bool visible1 = angle1 < 145f;
+            bool visible2 = angle2 < 145f;
+
+            leftIndicator.gameObject.SetActive(visible1);
+            rightIndicator.gameObject.SetActive(visible2);
+        }else
         {
-            if (flagScreenPos.x > middle - middle * cornerThreshold && flagScreenPos.x < middle)
-            {
-                if (flagScreenPos.y < Screen.height * cornerThreshold)
-                {
-                    indicator.transform.position = new Vector3(middle, 0, 0);
-                }
-                else if (flagScreenPos.y > Screen.height * (1 - cornerThreshold))
-                {
-                    indicator.transform.position = new Vector3(middle, Screen.height, 0);
-                }
-                else
-                {
-                    indicator.transform.position = flagScreenPos;
-                }
-            }
-            else
-            {
-                indicator.transform.position = new Vector3(-1000, -1000, 0);
-            }
+            leftIndicator.gameObject.SetActive(false);
+            rightIndicator.gameObject.SetActive(false);
         }
+
+        // Check if the flag is on the left side of the screen
+        if (flagScreenPos1.x < Screen.width / 2 - borderPadding && flag)
+        {
+            // Position the left indicator at the flag's screen position
+            leftIndicator.rectTransform.position = new Vector3(
+                Mathf.Clamp(flagScreenPos1.x, borderPadding, Screen.width / 2f - borderPadding),
+                Mathf.Clamp(flagScreenPos1.y, borderPadding, Screen.height - borderPadding), 0f);
+            leftIndicator.enabled = true; // Enable the left indicator
+        }/*else
+        {
+            leftIndicator.enabled = false;
+        }*/
+
+        if (flagScreenPos2.x > Screen.width / 2 + borderPadding && flag)
+        {
+            // Position the right indicator at the flag's screen position
+            rightIndicator.rectTransform.position = new Vector3(
+                Mathf.Clamp(flagScreenPos2.x, Screen.width / 2f + borderPadding, Screen.width - borderPadding),
+                Mathf.Clamp(flagScreenPos2.y, borderPadding, Screen.height - borderPadding), 0f);
+            rightIndicator.enabled = true; // Enable the right indicator
+        }
+        /*else
+            rightIndicator.enabled = false;*/
     }
 }

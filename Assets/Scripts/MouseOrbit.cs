@@ -41,7 +41,6 @@ public class MouseOrbit : MonoBehaviour
         y = angles.x;
 
 
-        Debug.Log("camera probeert nu de RB te krijgen");
         rigidbody = GetComponent<Rigidbody>();
 
         // Make the rigid body not change rotation
@@ -49,8 +48,6 @@ public class MouseOrbit : MonoBehaviour
         {
             rigidbody.freezeRotation = true;
         }
-
-        Debug.Log("Yo ben aan einde van start!");
 
         //modules = target.Find("Modules").GetComponentsInChildren<ShootModule>();
     }
