@@ -1463,7 +1463,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3f0c93a67a98c3b4b8779865222ae670,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.69
+      value: 15.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3f0c93a67a98c3b4b8779865222ae670,
         type: 3}
@@ -18005,6 +18005,7 @@ MonoBehaviour:
   maxSteerAngle: 50
   motorTorque: 5000
   brakeTorque: 10000
+  baseMotorTorque: 0
   stuckScreen: {fileID: 792552740}
   stuckDelay: 7
 --- !u!95 &725260352
@@ -21940,6 +21941,7 @@ MonoBehaviour:
   maxSteerAngle: 50
   motorTorque: 5000
   brakeTorque: 10000
+  baseMotorTorque: 0
   stuckScreen: {fileID: 609739909}
   stuckDelay: 7
 --- !u!95 &1191022025
@@ -25133,6 +25135,7 @@ MonoBehaviour:
   maxSteerAngle: 50
   motorTorque: 10000
   brakeTorque: 10000
+  baseMotorTorque: 0
   stuckScreen: {fileID: 609739909}
   stuckDelay: 7
 --- !u!95 &1647441795

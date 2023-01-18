@@ -4864,6 +4864,7 @@ MonoBehaviour:
   rightIndicator: {fileID: 0}
   cam1: {fileID: 0}
   cam2: {fileID: 0}
+  currentColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &940320887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6836,7 +6837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc5f48af2cffd747a079fe8c632e2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM6
+  portName: COM8
   baudRate: 115200
   messageListener: {fileID: 0}
   reconnectionDelay: 1000

@@ -55,6 +55,8 @@ public class SerialController : MonoBehaviour
     protected Thread thread;
     protected SerialThreadLines serialThread;
 
+    private string a;
+
 
     // ------------------------------------------------------------------------
     // Invoked whenever the SerialController gameobject is activated.

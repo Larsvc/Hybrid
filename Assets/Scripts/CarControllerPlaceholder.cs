@@ -114,9 +114,6 @@ public class CarControllerPlaceholder : MonoBehaviour
         //rotationValue = rearRightWheel.rpm * (360 / 60) * Time.deltaTime;
         rearRightWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
 
-        Debug.Log("Front RPM: " + frontLeftWheel.rpm);
-        Debug.Log("Rear RPM: " + rearLeftWheel.rpm);
-
         HandleHoles();
     }
 }
