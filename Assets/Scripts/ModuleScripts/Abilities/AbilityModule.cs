@@ -47,4 +47,10 @@ public abstract class AbilityModule : Module
         yield return new WaitForSeconds(Cooldown);
         canActivate = true;
     }
+
+    protected override void Die()
+    {
+        player.abilityModules.Remove(this);
+        base.Die();
+    }
 }

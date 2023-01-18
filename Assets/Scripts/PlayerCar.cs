@@ -64,7 +64,7 @@ public class PlayerCar : HealthEntity
     [SerializeField] private string[] selectedModules;
 
     [HideInInspector]public List<ShootModule> gunModules = new List<ShootModule>();
-    private List<AbilityModule> abilityModules = new List<AbilityModule>();
+    [HideInInspector] public List<AbilityModule> abilityModules = new List<AbilityModule>();
     #endregion
 
     public bool pickingModules;
