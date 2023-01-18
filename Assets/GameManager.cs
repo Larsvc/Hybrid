@@ -91,12 +91,14 @@ public class GameManager : MonoBehaviour
         }
 
         if (currentCargo)
+        {
             flagIndicator.flag = currentCargo.transform;
 
-        if (currentCargo.GetComponent<Cargo>().carriedBy)
-            flagIndicator.currentColour = Color.red;
-        else
-            flagIndicator.currentColour = Color.white;
+            if (currentCargo.GetComponent<Cargo>().carriedBy)
+                flagIndicator.currentColour = Color.red;
+            else
+                flagIndicator.currentColour = Color.white;
+        }
     }
 
     public void AddPoint(int player)
