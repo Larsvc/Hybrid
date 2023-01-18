@@ -34,7 +34,7 @@ public class Cargo : HealthEntity
         if (carriedBy && carriedBy.IsDead)
             Pickup(null, false);
 
-        if (transform.position.y < -2f)
+        if (transform.position.y < -1f)
             Die();
     }
 
@@ -47,7 +47,6 @@ public class Cargo : HealthEntity
             transform.localPosition = new Vector3(0, 1, -5f);
         else
         {
-            transform.position = GameObject.Find("CargoSpawn").transform.position;
             transform.rotation = Quaternion.identity;
         }
 
