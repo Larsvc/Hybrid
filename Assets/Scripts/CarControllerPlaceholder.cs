@@ -50,7 +50,8 @@ public class CarControllerPlaceholder : MonoBehaviour
     {
         currentSteerAngle = maxSteerAngle * Input.GetAxis("MoveHorizontalP" + player.playerNumber);
         currentMotorTorque = motorTorque * Input.GetAxis("MoveVerticalP" + player.playerNumber);
-        //currentBrakeTorque = brakeTorque * Input.GetAxis("AbilityP");
+
+        //currentBrakeTorque = Mathf.Clamp(brakeTorque * -Input.GetAxis("MoveVerticalP" + player.playerNumber), 0, brakeTorque);
     }
 
     void HandleHoles()
@@ -89,6 +90,8 @@ public class CarControllerPlaceholder : MonoBehaviour
         // Apply motor torque to rear wheels
         rearLeftWheel.motorTorque = currentMotorTorque;
         rearRightWheel.motorTorque = currentMotorTorque;
+        frontLeftWheel.motorTorque = currentMotorTorque;
+        frontRightWheel.motorTorque = currentMotorTorque;
 
         // Apply brake torque to all wheels
         frontLeftWheel.brakeTorque = currentBrakeTorque;
@@ -96,16 +99,19 @@ public class CarControllerPlaceholder : MonoBehaviour
         rearLeftWheel.brakeTorque = currentBrakeTorque;
         rearRightWheel.brakeTorque = currentBrakeTorque;
 
-        rotationValue = frontLeftWheel.rpm * (360 / 60) * Time.deltaTime;
+        rotationValue = frontLeftWheel.rpm * (360 / 60) * Time.fixedDeltaTime;
         frontLeftWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
         //frontLeftWheelModel.transform.Rotate(new Vector3(1, 0, 0) * currentSteerAngle * 0.1f);
-        rotationValue = frontRightWheel.rpm * (360 / 60) * Time.deltaTime;
+        //rotationValue = frontRightWheel.rpm * (360 / 60) * Time.deltaTime;
         frontRightWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
         //frontRightWheelModel.transform.Rotate(new Vector3(1, 0, 0) * currentSteerAngle * 0.1f);
-        rotationValue = rearLeftWheel.rpm * (360 / 60) * Time.deltaTime;
+        //rotationValue = rearLeftWheel.rpm * (360 / 60) * Time.deltaTime;
         rearLeftWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
-        rotationValue = rearRightWheel.rpm * (360 / 60) * Time.deltaTime;
+        //rotationValue = rearRightWheel.rpm * (360 / 60) * Time.deltaTime;
         rearRightWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
+
+        Debug.Log("Front RPM: " + frontLeftWheel.rpm);
+        Debug.Log("Rear RPM: " + rearLeftWheel.rpm);
 
         HandleHoles();
     }
