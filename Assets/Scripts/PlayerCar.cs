@@ -209,7 +209,7 @@ public class PlayerCar : HealthEntity
     {
         if (GameManager.playerSelectedModules[playerNumber - 1] != null)
             return GameManager.playerSelectedModules[playerNumber - 1].modules;
-        else return new string[] { "Launcher", "Launcher", "Booster", "Launcher" };
+        else return new string[] { "Ram", "Minigun", "Booster", "Launcher" };
     }
 
     // Update is called once per frame

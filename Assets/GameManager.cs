@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public static ModuleInfo[] playerSelectedModules = new ModuleInfo[2];
 
+    private float cargoTimer;
+
     public class ModuleInfo
     {
         public string[] modules = new string[4];
@@ -77,7 +79,15 @@ public class GameManager : MonoBehaviour
     private void CheckCargo()
     {
         if (currentCargo == null)
+        {
+            cargoTimer -= Time.deltaTime;
+        }
+
+        if (currentCargo == null && cargoTimer <= 0)
+        {
             currentCargo = Instantiate(cargoPrefab, cargoSpawnPoint.position, Quaternion.identity);
+            cargoTimer = 8f;
+        }
 
         if (currentCargo && !currentCargo.GetComponent<Cargo>().carriedBy)
             flagIndicator.flag = currentCargo.transform;
