@@ -60,10 +60,13 @@ public class CarControllerPlaceholder : MonoBehaviour
             + Convert.ToInt32(rearLeftWheel.isGrounded)
             + Convert.ToInt32(rearRightWheel.isGrounded);
 
-        if (wheelsGrounded < 4 && rigidbody.velocity.magnitude < 0.5f)
+        if (wheelsGrounded < 4 && rigidbody.velocity.magnitude < 0.5f && !player.IsDead)
             stuckTimer -= Time.deltaTime;
         else
+        {
             stuckTimer = stuckDelay;
+            stuckScreen.SetActive(false);
+        }
 
         if (stuckTimer < 3)
             stuckScreen.SetActive(true);
