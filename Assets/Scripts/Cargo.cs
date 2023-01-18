@@ -45,6 +45,11 @@ public class Cargo : HealthEntity
 
         if (pickup)
             transform.localPosition = new Vector3(0, 1, -5f);
+        else
+        {
+            transform.position = GameObject.Find("CargoSpawn").transform.position;
+            transform.rotation = Quaternion.identity;
+        }
 
         //GetComponent<Collider>().isTrigger = !pickup;
         /*GetComponentInChildren<ParticleSystem>().Clear();
