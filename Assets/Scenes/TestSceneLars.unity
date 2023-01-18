@@ -10481,7 +10481,7 @@ RectTransform:
   - {fileID: 865722911}
   - {fileID: 1009791562}
   m_Father: {fileID: 537902814}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17442,7 +17442,7 @@ MonoBehaviour:
   motorTorque: 10000
   brakeTorque: 10000
   stuckScreen: {fileID: 792552740}
-  stuckDelay: 10
+  stuckDelay: 7
 --- !u!95 &725260352
 Animator:
   serializedVersion: 4
@@ -17583,7 +17583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725260349}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 181.6, y: 0.06, z: 15.6}
+  m_LocalPosition: {x: 181.64, y: 0.06, z: 15.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17701,7 +17701,7 @@ RectTransform:
   - {fileID: 1702060645}
   - {fileID: 937492387}
   m_Father: {fileID: 537902814}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21648,7 +21648,7 @@ MonoBehaviour:
   motorTorque: 10000
   brakeTorque: 10000
   stuckScreen: {fileID: 609739909}
-  stuckDelay: 10
+  stuckDelay: 7
 --- !u!95 &1191022025
 Animator:
   serializedVersion: 4

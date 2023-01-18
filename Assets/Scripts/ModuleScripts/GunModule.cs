@@ -52,7 +52,7 @@ public class GunModule : ShootModule
     {
         if (chargeAmount < 1)
         {
-            chargeAmount += 2f * Time.deltaTime;
+            chargeAmount += 3.5f * Time.deltaTime;
             return;
         }
 

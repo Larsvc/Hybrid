@@ -31,10 +31,10 @@ public class RamModule : Module
     private void OnTriggerEnter(Collider other)
     {
         Transform otherBase = other.transform.root;
-        if (otherBase.tag == "Player" && otherBase != transform.root)
+        if (otherBase.tag == "Player" && otherBase != transform.root && player.GetComponent<Rigidbody>().velocity.magnitude > 4)
         {
             otherBase.GetComponent<HealthEntity>().TakeHit(actualDamage, player.hitmarker);
-            otherBase.GetComponent<Rigidbody>().AddForce(transform.forward * force * 500f, ForceMode.Force);
+            otherBase.GetComponent<Rigidbody>().AddForce(player.transform.forward * force * otherBase.GetComponent<Rigidbody>().mass / 1.7f, ForceMode.Force);
             //player.GetComponent<Rigidbody>().velocity *= 0.8f;
             player.cam.GetComponent<CameraShake>().startShaking(0.2f, 1f * multiplier, 80f);
         }

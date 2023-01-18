@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BotLoadingScene.unity
     guid: 9abb0554771243842890286ed0b86ff2
   - enabled: 1
-    path: Assets/Scenes/TestSceneLarsMetIndicator.unity
-    guid: 6c6be032dc048874c82970fb7c08c6c0
+    path: Assets/Scenes/TestSceneLars.unity
+    guid: b48561245a1123c43ba48421010023db
   m_configObjects: {}

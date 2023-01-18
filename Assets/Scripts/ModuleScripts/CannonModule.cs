@@ -70,7 +70,7 @@ public class CannonModule : ShootModule
         bullet.AddForce(dir * bulletForce * bullet.mass, ForceMode.Impulse);
         bullet.GetComponent<Projectile>().mask = mask;
 
-        camShake.startShaking(0.15f, 0.1f, 120f);
+        camShake.startShaking(0.15f, 0.15f, 120f);
 
         /*if (hit.transform)
         bullet.GetComponent<Bullet>().hitPoint = hit.point;*/
