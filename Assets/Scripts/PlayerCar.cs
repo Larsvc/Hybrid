@@ -356,4 +356,8 @@ public class PlayerCar : HealthEntity
         deathScreen.SetActive(true);
         IsDead = true;
     }
+    public void DestroySelf()
+    {
+        Die();
+    }
 }

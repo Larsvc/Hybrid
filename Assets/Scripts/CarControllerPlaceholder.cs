@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class CarControllerPlaceholder : MonoBehaviour
 {
     public WheelCollider frontLeftWheel, frontRightWheel;
     public WheelCollider rearLeftWheel, rearRightWheel;
+
+    private Rigidbody rigidbody;
 
     public float maxSteerAngle = 45f;
     public float motorTorque = 100f;
@@ -13,6 +16,10 @@ public class CarControllerPlaceholder : MonoBehaviour
     private float currentMotorTorque;
     private float currentBrakeTorque;
 
+    [SerializeField] private GameObject stuckScreen;
+    [SerializeField] private float stuckDelay = 13f;
+    private float stuckTimer;
+
     private Transform frontLeftWheelModel, frontRightWheelModel, rearLeftWheelModel, rearRightWheelModel;
 
     private float rotationValue;
@@ -20,9 +27,11 @@ public class CarControllerPlaceholder : MonoBehaviour
 
     private PlayerCar player;
 
+
     private void Awake()
     {
         player = GetComponent<PlayerCar>();
+        rigidbody = GetComponent<Rigidbody>();
 
         frontLeftWheelModel = frontLeftWheel.transform.GetChild(0);
         frontRightWheelModel = frontRightWheel.transform.GetChild(0);
@@ -42,6 +51,30 @@ public class CarControllerPlaceholder : MonoBehaviour
         currentSteerAngle = maxSteerAngle * Input.GetAxis("MoveHorizontalP" + player.playerNumber);
         currentMotorTorque = motorTorque * Input.GetAxis("MoveVerticalP" + player.playerNumber);
         //currentBrakeTorque = brakeTorque * Input.GetAxis("AbilityP");
+    }
+
+    void HandleHoles()
+    {
+        int wheelsGrounded = Convert.ToInt32(frontLeftWheel.isGrounded) 
+            + Convert.ToInt32(frontRightWheel.isGrounded)
+            + Convert.ToInt32(rearLeftWheel.isGrounded)
+            + Convert.ToInt32(rearRightWheel.isGrounded);
+
+        if (wheelsGrounded < 4 && rigidbody.velocity.magnitude < 0.5f)
+            stuckTimer -= Time.deltaTime;
+        else
+            stuckTimer = stuckDelay;
+
+        if (stuckTimer < 3)
+            stuckScreen.SetActive(true);
+
+        if (stuckTimer < 0)
+        {
+            stuckScreen.SetActive(false);
+            stuckTimer = stuckDelay;
+            player.DestroySelf();
+        }
+            
     }
 
     void FixedUpdate()
@@ -70,5 +103,7 @@ public class CarControllerPlaceholder : MonoBehaviour
         rearLeftWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
         rotationValue = rearRightWheel.rpm * (360 / 60) * Time.deltaTime;
         rearRightWheelModel.transform.Rotate(wheelModelRotation * rotationValue);
+
+        HandleHoles();
     }
 }
