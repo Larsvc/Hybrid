@@ -7,7 +7,7 @@ public class Cargo : HealthEntity
     private bool pickedUp;
     [HideInInspector] public PlayerCar carriedBy;
 
-    private float slowPercentage = 0.9f;
+    private float slowPercentage = 0.7f;
 
     // Start is called before the first frame update
     protected override void Start()
