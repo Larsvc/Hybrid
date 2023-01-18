@@ -12,6 +12,8 @@ public class CarControllerPlaceholder : MonoBehaviour
     public float motorTorque = 100f;
     public float brakeTorque = 100f;
 
+    [HideInInspector] public float baseMotorTorque;
+
     private float currentSteerAngle;
     private float currentMotorTorque;
     private float currentBrakeTorque;
@@ -30,6 +32,8 @@ public class CarControllerPlaceholder : MonoBehaviour
 
     private void Awake()
     {
+        baseMotorTorque = motorTorque;
+
         player = GetComponent<PlayerCar>();
         rigidbody = GetComponent<Rigidbody>();
 
