@@ -7,7 +7,7 @@ public class Cargo : HealthEntity
     private bool pickedUp;
     [HideInInspector] public PlayerCar carriedBy;
 
-    private float slowPercentage = 0.2f;
+    private float slowPercentage = 0.9f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -42,6 +42,7 @@ public class Cargo : HealthEntity
     {
         pickedUp = pickup;
         transform.SetParent(player);
+        CarControllerPlaceholder carController = carriedBy.GetComponent<CarControllerPlaceholder>();
 
         if (pickup)
             transform.localPosition = new Vector3(0, 1, -5f);
@@ -58,14 +59,14 @@ public class Cargo : HealthEntity
 
         if (pickup)
         {
-            carriedBy.SetSpeed(carriedBy.baseSpeed * (1f - slowPercentage));
+            //carriedBy.SetSpeed(carriedBy.baseSpeed * (1f - slowPercentage));
             GetComponentInChildren<AudioSource>().Play();
-            
+            carController.motorTorque = carController.baseMotorTorque * (1f - slowPercentage);
         }
         else
         {
             if (carriedBy)
-                carriedBy.SetSpeed(carriedBy.baseSpeed);
+                carController.motorTorque = carController.baseMotorTorque;
 
             carriedBy = null;
             GetComponentInChildren<ParticleSystem>().Stop();
@@ -87,5 +88,7 @@ public class Cargo : HealthEntity
     protected override void Die()
     {
         Destroy(gameObject);
+        if (carriedBy)
+            carriedBy.GetComponent<CarControllerPlaceholder>().motorTorque = carriedBy.GetComponent<CarControllerPlaceholder>().baseMotorTorque;
     }
 }
