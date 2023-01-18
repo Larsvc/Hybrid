@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public static ModuleInfo[] playerSelectedModules = new ModuleInfo[2];
 
     private float cargoTimer;
+    private float cargoSpawnTime = 10f;
 
     public class ModuleInfo
     {
@@ -86,13 +87,16 @@ public class GameManager : MonoBehaviour
         if (currentCargo == null && cargoTimer <= 0)
         {
             currentCargo = Instantiate(cargoPrefab, cargoSpawnPoint.position, Quaternion.identity);
-            cargoTimer = 8f;
+            cargoTimer = cargoSpawnTime;
         }
 
-        if (currentCargo && !currentCargo.GetComponent<Cargo>().carriedBy)
+        if (currentCargo)
             flagIndicator.flag = currentCargo.transform;
+
+        if (currentCargo.GetComponent<Cargo>().carriedBy)
+            flagIndicator.currentColour = Color.red;
         else
-            flagIndicator.flag = null;
+            flagIndicator.currentColour = Color.white;
     }
 
     public void AddPoint(int player)

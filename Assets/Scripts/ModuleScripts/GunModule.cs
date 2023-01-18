@@ -66,8 +66,8 @@ public class GunModule : ShootModule
 
         Ray ray = player.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit camHit;
-        bool hasHit = Physics.Raycast(player.cam.transform.position, player.cam.transform.forward, out camHit, 100f, mask);
-        Vector3 aimPoint = ray.GetPoint(100f);
+        bool hasHit = Physics.Raycast(player.cam.transform.position, player.cam.transform.forward, out camHit, 200f, mask);
+        Vector3 aimPoint = ray.GetPoint(200f);
 
         float angle = 2 * Mathf.PI * bulletCount / 10;
         Vector2 spawnPos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 0.3f;
@@ -81,7 +81,7 @@ public class GunModule : ShootModule
 
 
         RaycastHit hit;
-        if (Physics.Raycast(spawnPoint, dir, out hit, 100f, mask))
+        if (Physics.Raycast(spawnPoint, dir, out hit, 200f, mask))
         {
             GameObject hitEffect = Instantiate(PrefabManager.instance.hitEffectParticles, hit.point, Quaternion.identity);
             if (FirstParent(hit.collider.transform))

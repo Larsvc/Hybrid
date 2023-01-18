@@ -60,6 +60,7 @@ public class Cargo : HealthEntity
         {
             carriedBy.SetSpeed(carriedBy.baseSpeed * (1f - slowPercentage));
             GetComponentInChildren<AudioSource>().Play();
+            
         }
         else
         {

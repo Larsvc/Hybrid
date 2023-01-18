@@ -12,10 +12,15 @@ public class FlagIndicator : MonoBehaviour
 
     private float borderPadding = 32;
 
+    public Color currentColour = Color.white;
+
     void Update()
     {
         // Get the flag's position on the screen
         Vector3 flagScreenPos1 = Vector3.zero, flagScreenPos2 = Vector3.zero;
+
+        leftIndicator.color = currentColour;
+        rightIndicator.color = currentColour;
 
         if (flag)
         {

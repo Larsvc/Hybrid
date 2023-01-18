@@ -9985,6 +9985,7 @@ MonoBehaviour:
   rightIndicator: {fileID: 1842348119}
   cam1: {fileID: 720051134}
   cam2: {fileID: 701649968}
+  currentColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &588273248
 GameObject:
   m_ObjectHideFlags: 0
@@ -17418,7 +17419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41eeca55fe690c745be5193966d22556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 380
   IsDead: 0
   rotateSpeed: 2.5
   baseSpeed: 42
@@ -21717,7 +21718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41eeca55fe690c745be5193966d22556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 380
   IsDead: 0
   rotateSpeed: 2.5
   baseSpeed: 42
